@@ -1,0 +1,30 @@
+# General dependencies
+numpy==1.24.2
+pandas==1.5.3
+scipy==1.10.0
+scikit-learn==1.2.2
+matplotlib==3.7.1
+seaborn==0.12.2
+requests==2.28.2
+beautifulsoup4==4.11.2
+
+# For Jupyter and IPython
+jupyter==1.0.0
+ipykernel==6.21.2
+notebook==6.5.3
+
+# For web scraping
+scrapy==2.6.1
+lxml==4.9.3
+html5lib==1.1
+
+# For API development
+flask==2.2.2
+fastapi==0.95.0
+uvicorn==0.22.0
+
+# Other tools
+pytest==7.2.2
+black==23.3.0
+pylint==2.15.10
+autopep8==1.7.0

@@ -1,0 +1,38 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Environment and virtualenv
+.env
+.venv
+env/
+venv/
+ENV/
+.venv/
+
+# Distribution and packaging
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+sdist/
+.installed.cfg
+
+# OS files
+.DS_Store
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+executed_resume.ipynb
