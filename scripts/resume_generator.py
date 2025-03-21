@@ -110,9 +110,6 @@ def fix_capitalization(content):
         pattern = r'\b' + re.escape(term) + r'\b'
         content = re.sub(pattern, capitalized, content, flags=re.IGNORECASE)
     
-    # Special handling for AWS Cloud DevOps - explicit replacement
-    content = content.replace('AWS cloud DevOps', 'AWS Cloud DevOps')
-    
     # Fix ampersands for LaTeX
     content = content.replace(' & ', ' \\& ')
     
@@ -262,23 +259,36 @@ def main():
     parser.add_argument('--config', default='resume_config.yaml', help='Resume configuration YAML')
     parser.add_argument('--output', default='data/output/resume.md', help='Output resume markdown')
     parser.add_argument('--pdf', action='store_true', help='Generate PDF')
+    parser.add_argument('--basename', help='Base name for output files (e.g., "john_doe" will generate john_doe_resume.md)')
     
     args = parser.parse_args()
     
     # Create output directory if needed
-    os.makedirs(os.path.dirname(args.output), exist_ok=True)
+    output_dir = os.path.dirname(args.output)
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Set base filename if specified
+    if args.basename:
+        # Convert spaces to underscores and make lowercase
+        basename = args.basename.replace(' ', '_').lower()
+        # Get the original filename extension
+        _, ext = os.path.splitext(args.output)
+        # Set new output path with basename
+        base_output = os.path.join(output_dir, f"{basename}_resume{ext}")
+    else:
+        base_output = args.output
     
     # Process keywords
-    keywords_output = os.path.join(os.path.dirname(args.output), 'processed_keywords.csv')
+    keywords_output = os.path.join(output_dir, 'processed_keywords.csv')
     keywords = process_keywords(args.input, keywords_output)
     
     # Generate resume from template, passing the keywords file
-    generate_resume(args.template, args.config, args.output, keywords_file=keywords_output)
+    generate_resume(args.template, args.config, base_output, keywords_file=keywords_output)
     
     # Generate PDF if requested
     if args.pdf:
-        pdf_output = os.path.dirname(args.output)
-        pdf_file = generate_pdf(args.output, pdf_output)
+        pdf_output = output_dir
+        pdf_file = generate_pdf(base_output, pdf_output)
         if pdf_file:
             print(f"Resume PDF available at: {pdf_file}")
         else:
