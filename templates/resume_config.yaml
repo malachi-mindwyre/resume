@@ -1,5 +1,5 @@
 # Resume Configuration
-# This file controls the structure and ordering of your resume sections
+# Simple configuration for resume structure
 
 # Basic Information
 name: "Malachi Dunn"
@@ -13,19 +13,16 @@ contact:
   website: "mindwyre.org"
 
 # Section Ordering
-# This defines which sections appear and in what order
-# Available sections: profile, education, certifications, skills, experience, projects, publications
 section_order:
   - profile
   - education
+  - experience
   - certifications
   - skills
-  - experience
   - projects
   - publications
 
-# Optional: Custom section titles 
-# By default, each section uses standardized titles, but you can customize them here
+# Custom section titles
 section_titles:
   profile: "Profile Summary"
   education: "Education"
@@ -34,14 +31,3 @@ section_titles:
   experience: "Professional Experience"
   projects: "Projects Experience"
   publications: "Publications"
-
-# Optional: Section visibility
-# Set to false to hide a section
-section_visibility:
-  profile: true
-  education: true
-  certifications: true
-  skills: true
-  experience: true
-  projects: true
-  publications: true
