@@ -106,11 +106,26 @@ def fix_formatting(content):
     content_without_headers = proper_case(content_without_headers)
     
     # Fix common capitalization errors - lowercase these words when not at the start of a sentence
+    # But never in certifications or titles
     words_to_lowercase = ['data', 'cloud', 'database', 'analytics']
+    exceptions = ['AWS Cloud DevOps', 'Google Cloud Platform', 'Cloud Services', 'Cloud and DevOps']
+    
+    # First protect exceptions
+    for exception in exceptions:
+        if exception in content_without_headers:
+            content_without_headers = content_without_headers.replace(exception, exception.replace(' ', '_PROTECTED_'))
+    
+    # Then lowercase generic uses
     for word in words_to_lowercase:
         # Only replace if not at start of line or after period and not in job titles
         pattern = r'(?<!\n)(?<!\. )(?<!\n- )(?<!\: )(?<!\n### )(?<!\n## )(?<!\n# )(?<!\*\*)(?<!\()(?<!\")' + word.capitalize()
         content_without_headers = re.sub(pattern, word, content_without_headers, flags=re.IGNORECASE)
+    
+    # Now restore exceptions
+    for exception in exceptions:
+        protected = exception.replace(' ', '_PROTECTED_')
+        if protected in content_without_headers:
+            content_without_headers = content_without_headers.replace(protected, exception)
     
     # Fix job titles and sections with "Data" that should be capitalized
     content_without_headers = content_without_headers.replace("data Engineer", "Data Engineer")
@@ -219,8 +234,22 @@ def highlight_keywords(resume_file, output_file, keywords):
     # Clean up formatting without adding bold to keywords
     processed_content = fix_formatting(content)
     
+    # Ensure certification capitalization is correct
+    processed_content = processed_content.replace("AWS cloud DevOps", "AWS Cloud DevOps")
+    processed_content = processed_content.replace("cloud and DevOps", "Cloud and DevOps")
+    
+    # Cleanup any protected keywords that might have been left
+    processed_content = processed_content.replace("_PROTECTED_", " ")
+    
     # Ensure ampersands are escaped for LaTeX
     processed_content = processed_content.replace(" & ", " \\& ")
+    
+    # Clean up nested formatting - this fixes repeated formatting from multiple runs
+    processed_content = processed_content.replace("\\textit{\\textit{", "\\textit{")
+    processed_content = processed_content.replace("\\textbf{\\textbf{", "\\textbf{")
+    processed_content = processed_content.replace("}}}", "}")
+    processed_content = processed_content.replace("}}}}", "}}")
+    processed_content = processed_content.replace("}}}}}", "}}}")
     
     # Fix italics with LaTeX for proper PDF rendering
     # Handle bold formatting first
