@@ -210,10 +210,24 @@ def highlight_keywords(resume_file, output_file, keywords):
     processed_content = fix_formatting(content)
     
     # Fix italics with LaTeX for proper PDF rendering
+    # Handle bold formatting first
+    processed_content = re.sub(
+        r'\*\*([^*\n]+?)\*\*', 
+        r'\\textbf{\1}',
+        processed_content
+    )
+    
     # Replace markdown italics with LaTeX \textit for positions and dates with \hfill
     processed_content = re.sub(
         r'\*([^*\n]+?)\* \\hfill \*([^*\n]+?)\*',
         r'\\textit{\1} \\hfill \\textit{\2}',
+        processed_content
+    )
+    
+    # Handle remaining italics
+    processed_content = re.sub(
+        r'\*([^*\n]+?)\*',
+        r'\\textit{\1}',
         processed_content
     )
     
@@ -238,39 +252,44 @@ def generate_pdf(markdown_file, output_dir="pdf"):
     output_pdf = os.path.join(output_dir, f"{name_without_ext}.pdf")
     
     try:
-        # Check for pandoc in various locations
-        pandoc_paths = [
-            "pandoc",                                      # System path
-            "/usr/local/bin/pandoc",                       # Standard install location
-            "/opt/homebrew/bin/pandoc",                    # Homebrew on Apple Silicon
-            "/opt/homebrew/Cellar/pandoc/3.6.4/bin/pandoc" # Specific Homebrew version
-        ]
-        
-        pandoc_found = False
-        pandoc_cmd = None
-        
-        for path in pandoc_paths:
-            try:
-                # Check if pandoc executable exists and is accessible
-                result = subprocess.run(f"which {path}", shell=True, capture_output=True, text=True)
-                if result.returncode == 0 and result.stdout.strip():
+        # Find pandoc in the system
+        result = subprocess.run("which pandoc", shell=True, capture_output=True, text=True)
+        if result.returncode == 0 and result.stdout.strip():
+            pandoc_found = True
+            pandoc_cmd = result.stdout.strip()
+            print(f"Found pandoc at: {pandoc_cmd}")
+        else:
+            # Check for pandoc in various locations as fallback
+            pandoc_paths = [
+                "/usr/local/bin/pandoc",                       # Standard install location
+                "/opt/homebrew/bin/pandoc",                    # Homebrew on Apple Silicon
+                "/opt/homebrew/Cellar/pandoc/3.6.4/bin/pandoc" # Specific Homebrew version
+            ]
+            
+            pandoc_found = False
+            pandoc_cmd = None
+            
+            for path in pandoc_paths:
+                if os.path.exists(path) and os.access(path, os.X_OK):
                     pandoc_found = True
                     pandoc_cmd = path
+                    print(f"Found pandoc at: {pandoc_cmd}")
                     break
-            except:
-                continue
-        
-        if not pandoc_found:
-            print("Pandoc not found in standard locations. Checking if it's available in PATH...")
-            result = subprocess.run("which pandoc", shell=True, capture_output=True, text=True)
-            if result.returncode == 0 and result.stdout.strip():
-                pandoc_found = True
-                pandoc_cmd = "pandoc"
         
         if pandoc_found:
             print(f"Using pandoc at: {pandoc_cmd}")
             # Run pandoc command with pdflatex engine explicitly specified and include the path to pdflatex
-            subprocess.run(f"PATH=$PATH:/Library/TeX/texbin {pandoc_cmd} {markdown_file} -o {output_pdf} --pdf-engine=pdflatex", shell=True, check=True)
+            command = f"PATH=$PATH:/Library/TeX/texbin {pandoc_cmd} {markdown_file} -o {output_pdf} --pdf-engine=pdflatex"
+            print(f"Executing command: {command}")
+            result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            
+            if result.returncode != 0:
+                print(f"PDF generation command failed with return code {result.returncode}")
+                print(f"Error output:\n{result.stderr}")
+                print(f"Standard output:\n{result.stdout}")
+                return None
+            else:
+                print(f"PDF generation command executed successfully")
             
             if os.path.exists(output_pdf):
                 print(f"PDF successfully generated: {output_pdf}")
