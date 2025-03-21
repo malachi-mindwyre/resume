@@ -6,8 +6,9 @@ This tool helps you maintain a keyword-optimized resume by analyzing job descrip
 
 1. **keywords_processor.py** - Processes raw keyword data from job listings and preserves multi-word terms
 2. **update_resume.py** - Updates your resume with relevant keywords and generates PDF
-3. **resume_formatter.md** - Guide for formatting your resume correctly
-4. **resume_executor.ipynb** - Jupyter notebook that runs the entire process with detailed logging
+3. **easy_resume_processor.py** - Single script that runs the entire process (recommended)
+4. **update_all.sh** - Simple shell script to run the entire process
+5. **resume_formatter.md** - Guide for formatting your resume correctly
 
 ## Directory Structure
 
@@ -39,29 +40,29 @@ This tool helps you maintain a keyword-optimized resume by analyzing job descrip
 
 ## Usage
 
-### Jupyter Notebook Executor (Recommended)
+### Easiest Method: Using the All-in-One Script
 
-The easiest way to run the entire process is using the Jupyter notebook:
+Run the entire process with a single command:
 
 ```bash
-jupyter notebook resume_executor.ipynb
+python3 easy_resume_processor.py
 ```
 
-This notebook:
-- Processes keywords from job descriptions
+This script:
+- Processes keywords from lead_gen.csv
 - Updates your resume with top keywords
-- Generates PDFs in the pdf/ directory
-- Provides detailed logging throughout the process
-- Organizes files into appropriate directories
-- Customizable through a simple configuration section
+- Generates PDF in the pdf/ directory
+- Provides detailed logging
 
-The first time you run it, the notebook will:
-1. Create markdown/ and pdf/ directories
-2. Copy your existing resume-markdown.md to markdown/resume.md
-3. Process the keywords and update the resume
-4. Generate PDFs in the pdf/ directory
+### Alternative: Shell Script
 
-### Manual Process
+Run the shell script for a simpler process:
+
+```bash
+./update_all.sh
+```
+
+### Advanced: Individual Scripts
 
 If you prefer to run the scripts individually:
 
@@ -77,20 +78,27 @@ python3 keywords_processor.py
 python3 update_resume.py --resume markdown/resume.md --pdf
 ```
 
-## PDF Generation
+## PDF Generation Troubleshooting
 
-The system can generate a PDF using:
+If PDF generation fails with LaTeX errors:
 
-1. **Pandoc** (if installed):
-   ```bash
-   pandoc markdown/resume.md -o pdf/resume.pdf
-   ```
+1. Make sure you have a LaTeX distribution installed (like TeX Live or MiKTeX)
+2. If you see errors about missing LaTeX packages (like `titlesec.sty`), use the simplified YAML header:
+   - Copy the content from `simplified_yaml_header.md` to the top of your resume
+   - This removes dependencies on less common LaTeX packages
 
-2. **VS Code**: Open the markdown file in VS Code and use the Markdown PDF extension
+3. Alternative PDF generation methods:
+   - Use VS Code with the Markdown PDF extension
+   - Use online Markdown to PDF converters
+   - Use `pandoc` with alternative options:
+     ```bash
+     pandoc markdown/resume.md -o pdf/resume.pdf --pdf-engine=wkhtmltopdf
+     ```
 
 ## Workflow
 
 1. Add job description keywords to `lead_gen.csv`
-2. Run the Jupyter notebook `resume_executor.ipynb`
-3. Find your updated resume in the markdown/ directory
-4. Find your generated PDF in the pdf/ directory
+2. Run `python3 easy_resume_processor.py`
+3. Your updated resume will be in:
+   - Markdown: `markdown/resume.md`
+   - PDF: `pdf/resume.pdf`

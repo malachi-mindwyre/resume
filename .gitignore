@@ -36,3 +36,11 @@ Thumbs.db
 # Jupyter notebook checkpoints
 .ipynb_checkpoints/
 executed_resume.ipynb
+
+# Google Drive credentials
+credentials.json
+token.json
+token.pickle
+
+# Backup folders
+backup/

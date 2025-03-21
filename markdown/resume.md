@@ -5,7 +5,6 @@ header-includes:
   - \usepackage{fancyhdr}
   - \pagestyle{empty}
   - \pagenumbering{gobble}
-  - \usepackage{titlesec}
   - \usepackage{hyperref}
   - \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
 ---
@@ -13,7 +12,7 @@ header-includes:
 \begin{center}
 \large\textbf{Malachi Dunn}
 
-Data Engineer • Data Scientist  
+**data** Engineer • **data** Scientist  
 
 \href{mailto:malachi@mindwyre.org}{malachi@mindwyre.org} | (+1) 208-625-1747 | Oldtown, ID 83822 United States  
 

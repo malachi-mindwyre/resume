@@ -277,8 +277,9 @@ def main():
     # Update resume
     highlight_keywords(args.resume, output_file, keywords)
     
-    # Generate PDF automatically (regardless of --pdf flag)
+    # Generate PDF automatically
     pdf_path = generate_pdf(output_file, args.pdf_dir)
+    
     if pdf_path:
         print(f"Resume PDF available at: {pdf_path}")
     else:
