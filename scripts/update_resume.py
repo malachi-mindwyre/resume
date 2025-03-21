@@ -160,10 +160,14 @@ def fix_formatting(content):
             lines[i] = f"*{lines[i].strip('*')}*"
             
         # Special handling for & characters in technical skills
+        if "cloud & DevOps" in lines[i]:
+            lines[i] = lines[i].replace("cloud & DevOps", "cloud \\& DevOps")
         if "Cloud & DevOps" in lines[i]:
             lines[i] = lines[i].replace("Cloud & DevOps", "Cloud \\& DevOps")
         if "Frameworks & Libraries" in lines[i]:
             lines[i] = lines[i].replace("Frameworks & Libraries", "Frameworks \\& Libraries")
+        if "frameworks & Libraries" in lines[i]:
+            lines[i] = lines[i].replace("frameworks & Libraries", "frameworks \\& Libraries")
     
     content_without_headers = '\n'.join(lines)
     
@@ -214,6 +218,9 @@ def highlight_keywords(resume_file, output_file, keywords):
     
     # Clean up formatting without adding bold to keywords
     processed_content = fix_formatting(content)
+    
+    # Ensure ampersands are escaped for LaTeX
+    processed_content = processed_content.replace(" & ", " \\& ")
     
     # Fix italics with LaTeX for proper PDF rendering
     # Handle bold formatting first
