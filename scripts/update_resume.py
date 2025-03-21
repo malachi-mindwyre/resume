@@ -5,6 +5,7 @@ import subprocess
 import os
 import re
 import shutil
+import yaml
 
 def load_keywords(keywords_file):
     """Load and return processed keywords file"""
@@ -202,7 +203,9 @@ def fix_formatting(content):
         # Only bold category headers in Technical Skills section
         if in_tech_skills and ': ' in lines[i] and not lines[i].startswith('-'):
             parts = lines[i].split(': ', 1)
-            lines[i] = f"**{parts[0]}**: {parts[1]}"
+            # Make sure we don't have nested bold formatting
+            if "**" not in parts[0] and "\\textbf" not in parts[0]:
+                lines[i] = f"**{parts[0]}**: {parts[1]}"
     
     content_without_headers = '\n'.join(lines)
     
@@ -226,17 +229,61 @@ def fix_formatting(content):
     # Reconstruct the full content
     return yaml_header + latex_header + content_without_headers
 
+def load_overrides():
+    """Load format overrides from template file"""
+    overrides_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'templates', 'overrides.md')
+    if not os.path.exists(overrides_path):
+        print(f"Overrides file not found: {overrides_path}")
+        return {}, {}
+    
+    with open(overrides_path, 'r') as f:
+        content = f.read()
+    
+    job_titles = []
+    capitalizations = []
+    
+    # Extract job titles from file
+    match = re.search(r'JOB_TITLES = \[(.*?)\]', content, re.DOTALL)
+    if match:
+        titles_text = match.group(1)
+        for line in titles_text.split('\n'):
+            line = line.strip()
+            if line.startswith('"') or line.startswith("'"):
+                # Extract text within quotes
+                title = line.strip('",\' ')
+                if title:
+                    job_titles.append(title)
+    
+    # Extract capitalizations from file
+    match = re.search(r'CAPITALIZATIONS = \[(.*?)\]', content, re.DOTALL)
+    if match:
+        caps_text = match.group(1)
+        for line in caps_text.split('\n'):
+            line = line.strip()
+            if line.startswith('"') or line.startswith("'"):
+                # Extract text within quotes
+                cap = line.strip('",\' ')
+                if cap:
+                    capitalizations.append(cap)
+    
+    return job_titles, capitalizations
+
 def highlight_keywords(resume_file, output_file, keywords):
     """Process resume without adding keyword emphasis"""
     with open(resume_file, 'r') as f:
         content = f.read()
     
+    # Load format overrides
+    job_titles, capitalizations = load_overrides()
+    
     # Clean up formatting without adding bold to keywords
     processed_content = fix_formatting(content)
     
-    # Ensure certification capitalization is correct
-    processed_content = processed_content.replace("AWS cloud DevOps", "AWS Cloud DevOps")
-    processed_content = processed_content.replace("cloud and DevOps", "Cloud and DevOps")
+    # Apply overrides for capitalization
+    for term in capitalizations:
+        # Create pattern that will match the term regardless of case for "Cloud"
+        pattern = term.replace('Cloud', '[Cc]loud')
+        processed_content = re.sub(pattern, term, processed_content, flags=re.IGNORECASE)
     
     # Cleanup any protected keywords that might have been left
     processed_content = processed_content.replace("_PROTECTED_", " ")
@@ -252,7 +299,21 @@ def highlight_keywords(resume_file, output_file, keywords):
     processed_content = processed_content.replace("}}}}}", "}}}")
     
     # Fix italics with LaTeX for proper PDF rendering
-    # Handle bold formatting first
+    # First apply explicit italics for job titles
+    lines = processed_content.split('\n')
+    for i, line in enumerate(lines):
+        for title in job_titles:
+            if title in line and '\\textit{' not in line:
+                if '\\hfill' in line:
+                    parts = line.split('\\hfill')
+                    if len(parts) == 2:
+                        lines[i] = f"\\textit{{{parts[0].strip()}}} \\hfill \\textit{{{parts[1].strip()}}}"
+                else:
+                    lines[i] = line.replace(title, f"\\textit{{{title}}}")
+    
+    processed_content = '\n'.join(lines)
+    
+    # Handle bold formatting
     processed_content = re.sub(
         r'\*\*([^*\n]+?)\*\*', 
         r'\\textbf{\1}',
@@ -363,7 +424,8 @@ def main():
     # Process keywords if needed
     if not os.path.exists(args.keywords):
         print("Keywords file not found. Running keywords_processor.py...")
-        subprocess.run(['python3', 'keywords_processor.py'], check=True)
+        script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'keywords_processor.py')
+        subprocess.run(['python3', script_path], check=True)
     
     # Load keywords
     keywords = load_keywords(args.keywords)
