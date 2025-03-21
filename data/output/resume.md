@@ -25,12 +25,12 @@ header-includes:
 
 ## \textcolor{accent}{Profile Summary}
 
-- **Accomplished Data Engineer** proficient in Python, SQL, Airflow, Spark, and Scala, including building ETL pipelines predominantly in a GCP cloud environment.
-- **Solid proficiency** in data modeling, database architecture, and utilization of cloud-based data solutions and back-end systems for distributed data processing.
-- **Expert in streaming services**, advertising, mobile apps, and web-scale architecture, with extensive experience working with REST APIs in batch and real-time processing of data.
-- **Skilled in designing** and executing scalable, data-driven solutions using AI, ML, and cloud infrastructure.
-- **Specialized in predictive analytics**, time-series data, and utilization of ML models in MMM, MTA, and other marketing and advertising strategies, leveraging these skills to drive data-driven decision-making and optimization strategies.
-- **Effective collaborator** within agile environments and SDLC, utilizing interpersonal skills to reach alignment among various teams with differing priorities, to ensure steady progress even within tight deadlines.
+- Accomplished Data Engineer proficient in Python, SQL, Airflow, Spark, and Scala, including building ETL pipelines predominantly in a GCP cloud environment.
+- Solid proficiency in data modeling, database architecture, and utilization of cloud-based data solutions and back-end systems for distributed data processing.
+- Expert in streaming services, advertising, mobile apps, and web-scale architecture, with extensive experience working with REST APIs in batch and real-time processing of data.
+- Skilled in designing and executing scalable, data-driven solutions for Martech and Adtech.
+- Specialized in predictive analytics, time-series data, and utilization of ML models in MMM, MTA, and other marketing and advertising strategies, leveraging these skills to drive data-driven decision-making and optimization strategies.
+- Effective collaborator within agile environments and SDLC, utilizing interpersonal skills to reach alignment among various teams with differing priorities, to ensure steady progress even within tight deadlines.
 
 ## \textcolor{accent}{Education}
 
@@ -106,3 +106,7 @@ App Developer Magazine, "New Lookback Attribution Windows for SAN Networks." \hf
 ## \textcolor{accent}{Keywords}
 
 BigQuery, Apache, Business Intelligence, BI, ETL, Pipeline, Statistics, Clustering, Backend, Back End, DevOps, Information Security, API, Project Management, Performance Optimization, Problem Solving, Attention to Detail, Advanced Analytics, Data Architecture, Cloud Computing, Machine Learning, Predictive Analytics, Data Science, Campaign Optimization, AWS, Azure, Power BI, PowerBI, DynamoDB, Dynamo DB, Decision Making, Business Objectives
+
+## Keywords
+
+Cloud Infrastructure, Infrastructure
