@@ -4,12 +4,13 @@ This tool helps you maintain a keyword-optimized resume by analyzing job descrip
 
 ## Components
 
-1. **scripts/keywords_processor.py** - Processes raw keyword data from job listings and preserves multi-word terms
-2. **scripts/update_resume.py** - Updates your resume with relevant keywords and generates PDF
-3. **scripts/easy_resume_processor.py** - Single script that runs the entire process (recommended)
-4. **scripts/easy_resume_processor_with_drive.py** - Process with Google Drive integration
-5. **scripts/google_drive_handler.py** - Handles Google Drive operations
-6. **scripts/update_all.sh** - Simple shell script to run the entire process
+1. **resume_generator.ipynb** - Interactive Jupyter notebook with user-friendly interface (recommended)
+2. **scripts/keywords_processor.py** - Processes raw keyword data from job listings and preserves multi-word terms
+3. **scripts/update_resume.py** - Updates your resume with relevant keywords and generates PDF
+4. **scripts/easy_resume_processor.py** - Single script that runs the entire process
+5. **scripts/easy_resume_processor_with_drive.py** - Process with Google Drive integration
+6. **scripts/google_drive_handler.py** - Handles Google Drive operations
+7. **scripts/update_all.sh** - Simple shell script to run the entire process
 
 ## Directory Structure
 
@@ -47,7 +48,23 @@ This tool helps you maintain a keyword-optimized resume by analyzing job descrip
 
 ## Usage
 
-### Easiest Method: Using the All-in-One Script
+### Recommended: Using the Interactive Jupyter Notebook
+
+The most user-friendly way to use this tool is through the interactive Jupyter notebook:
+
+```bash
+jupyter notebook resume_generator.ipynb
+```
+
+This notebook provides:
+- An intuitive, visual interface with progress indicators
+- Configuration options for customizing the process
+- One-click execution of the entire workflow
+- Advanced options for running individual steps
+- Visual display of processed keywords and results
+- Direct links to generated files
+
+### Alternative: Using the All-in-One Script
 
 Run the entire process with a single command:
 
