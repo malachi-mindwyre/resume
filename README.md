@@ -71,14 +71,9 @@ chmod +x generate_resume.sh
    cd resume
    ```
 
-2. Install dependencies:
+2. Install all dependencies:
    ```bash
    pip install -r requirements.txt
-   ```
-
-   For Jupyter notebook users, you may need to install additional packages:
-   ```bash
-   pip install notebook ipywidgets tqdm
    ```
 
 3. Install Pandoc (required for PDF generation):
@@ -145,11 +140,6 @@ SPECIAL_TERMS = {
 
 2. Run the cell in the notebook
 
-   Note: The notebook will automatically install any missing dependencies when you run it. If you encounter any issues, make sure you have installed the required packages:
-   ```bash
-   pip install notebook ipywidgets tqdm pandas pyyaml google-api-python-client google-auth-httplib2 google-auth-oauthlib
-   ```
-
 ### Option 2: Using the Shell Script
 
 ```bash
@@ -185,37 +175,20 @@ python3 scripts/resume_generator.py \
 
 ## Troubleshooting
 
-### Jupyter Notebook Issues
+If you encounter any issues:
 
-If you encounter issues with the Jupyter notebook:
+1. **Make sure all dependencies are installed**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-1. **Module not found errors**:
-   - The notebook will try to install missing dependencies automatically
-   - If this doesn't work, manually install the required packages:
-     ```bash
-     pip install notebook ipywidgets tqdm pandas pyyaml google-api-python-client google-auth-httplib2 google-auth-oauthlib
-     ```
-   - Restart the kernel after installing packages
+2. **PDF generation issues**:
+   - Verify Pandoc installation: `which pandoc`
+   - Ensure you have a LaTeX distribution installed (TeX Live or MiKTeX)
 
-2. **Import errors**:
-   - Make sure you're running the notebook from the project root directory
-   - The notebook uses multiple methods to find the required modules
-   - If all else fails, try running the shell script instead
-
-3. **Authentication errors**:
-   - Ensure you have a valid `client_secret.json` file in the project root
-   - Delete the `token.pickle` file if you're experiencing authentication issues and try again
-
-### PDF Generation Issues
-
-If PDF generation fails:
-
-1. Ensure you have Pandoc installed: `which pandoc`
-2. Make sure you have a LaTeX distribution (like TeX Live or MiKTeX)
-3. Try an alternative PDF generation method:
-   - VS Code with the Markdown PDF extension
-   - Online Markdown to PDF converters
-   - Alternative Pandoc options: `pandoc resume.md -o resume.pdf --pdf-engine=wkhtmltopdf`
+3. **Google Drive upload issues**:
+   - Check that `client_secret.json` exists in the project root
+   - If authentication fails, delete `token.pickle` and try again
 
 ## Contributing
 
