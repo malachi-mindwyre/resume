@@ -96,7 +96,7 @@ chmod +x generate_resume.sh
 5. (Optional) For Google Drive upload functionality:
    - Create a Google Cloud Platform project
    - Enable the Google Drive API
-   - Create OAuth 2.0 credentials and download as `client_secret.json`
+   - Create OAuth 2.0 credentials and download as `client_secret.json` (rename it to this exact name)
    - Place the credentials file in the project root
    - Run `python scripts/get_refresh_token.py` to authenticate once
 

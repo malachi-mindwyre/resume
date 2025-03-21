@@ -226,14 +226,12 @@ def get_google_drive_service():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            # Look for any client_secret*.json file in the project root
+            # Look for client_secret.json file in the project root
             project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-            client_secret_files = [f for f in os.listdir(project_root) if f.startswith('client_secret') and f.endswith('.json')]
+            client_secret_file = os.path.join(project_root, 'client_secret.json')
             
-            if not client_secret_files:
-                raise FileNotFoundError("No client_secret.json file found in project root. Please add your Google API credentials.")
-                
-            client_secret_file = os.path.join(project_root, client_secret_files[0])
+            if not os.path.exists(client_secret_file):
+                raise FileNotFoundError("client_secret.json file not found in project root. Please add your Google API credentials.")
             flow = InstalledAppFlow.from_client_secrets_file(client_secret_file, SCOPES)
             creds = flow.run_local_server(port=0)
         

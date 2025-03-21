@@ -18,16 +18,14 @@ def main():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            # Look for any client_secret*.json file in the project root
+            # Look for client_secret.json file in the project root
             project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-            client_secret_files = [f for f in os.listdir(project_root) if f.startswith('client_secret') and f.endswith('.json')]
+            client_secret_file = os.path.join(project_root, 'client_secret.json')
             
-            if not client_secret_files:
-                print("Error: No client_secret.json file found in project root.")
+            if not os.path.exists(client_secret_file):
+                print("Error: client_secret.json file not found in project root.")
                 print("Please add your Google API credentials file to the project root.")
                 return
-                
-            client_secret_file = os.path.join(project_root, client_secret_files[0])
             flow = InstalledAppFlow.from_client_secrets_file(client_secret_file, SCOPES)
             creds = flow.run_local_server(port=0)
         
