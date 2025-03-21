@@ -12,20 +12,20 @@ header-includes:
 \begin{center}
 \large\textbf{Malachi Dunn}
 
-**data** Engineer • **data** Scientist  
+Data Engineer • Data Scientist  
 
 \href{mailto:malachi@mindwyre.org}{malachi@mindwyre.org} | (+1) 208-625-1747 | Oldtown, ID 83822 United States  
 
-\href{https://linkedin.com/in/malachidunn}{linkedin.com/in/malachidunn} | \href{https://github.com/mindwyre}{github.com/mindwyre} | \href{https://mindwyre.org}{mindwyre.org}
+\href{https://linkedin.com/in/malachidunn}{linkedin.com/in/malachidunn} | \href{https://github.com/malachi-mindwyre}{github.com/malachi-mindwyre} | \href{https://mindwyre.org}{mindwyre.org}
 \end{center}
 
 ## Profile Summary
 
 - Accomplished Data Engineer proficient in Python, SQL, Airflow, Spark, and Scala, including building ETL pipelines predominantly in a GCP Cloud environment.
-- Solid proficiency in Data modeling, database architecture, and utilization of Cloud-based Data solutions and back-end systems for distributed Data processing.
-- Expert in streaming services, advertising, mobile apps, and web-scale architecture, with extensive experience working with REST APIs in batch and real-time processing of Data.
-- Skilled in designing and executing scalable, Data-driven solutions using AI, ML, and Cloud infrastructure.
-- Specialized in predictive analytics, time-series Data, and utilization of ML models in MMM, MTA, and other marketing and advertising strategies, leveraging these skills to drive Data-driven decision-making and optimization strategies.
+- Solid proficiency in data modeling, database architecture, and utilization of cloud-based data solutions and back-end systems for distributed data processing.
+- Expert in streaming services, advertising, mobile apps, and web-scale architecture, with extensive experience working with REST APIs in batch and real-time processing of data.
+- Skilled in designing and executing scalable, data-driven solutions using AI, ML, and cloud infrastructure.
+- Specialized in predictive analytics, time-series data, and utilization of ML models in MMM, MTA, and other marketing and advertising strategies, leveraging these skills to drive data-driven decision-making and optimization strategies.
 - Effective collaborator within agile environments and SDLC, utilizing interpersonal skills to reach alignment among various teams with differing priorities, to ensure steady progress even within tight deadlines.
 
 ## Education
@@ -56,16 +56,16 @@ Lewis‐Clark State College | Bachelors, Mathematics \hfill Lewiston, ID | GPA: 
 ### [CopperWyre](https://copperwyre.com) \| Senior Data Engineer, Martech \hfill
 *Contract, Remote* \hfill *Aug. 2024 - Current*
 
-- Performed ETL on user Data to send to Experian and Liveramp that allowed advertising partners to target specific users based on different attributes in targeted MMM and MTA ad-campaigns.
-- Increased user match-rates to advertising partners for user targeting by restructuring legacy SQL and Python code that optimized internal Data collection techniques.
+- Performed ETL on user data to send to Experian and Liveramp that allowed advertising partners to target specific users based on different attributes in targeted MMM and MTA ad-campaigns.
+- Increased user match-rates to advertising partners for user targeting by restructuring legacy SQL and Python code that optimized internal data collection techniques.
 - Developed a comprehensive media mix model that identified potential savings by optimizing channel allocation, maintaining overall sales performance while reducing marketing spend.
 - Automated A/B test experiments by creating executable VertexAI / Google Colab notebooks that automated test and control Martech campaign KNN matching for Google PLA feed experiments designed to increase revenue on targeted advertisements.
 
 ### [Disney](https://disney.com) \| Lead Data Engineer, Adtech \hfill
 *6mo. Contract, Remote* \hfill *Jan. 2024 - Jul. 2024*
 
-- Built revenue-impacting, direct-to-client Data pipelines for the entirety of Hulu, Disney+, and GAM ad-logs for vendor reporting, ad-targeting, and maintaining CCPA and GDPR Data compliance within internal tables using GCP, Snowflake, Airflow, and Python, enabling real-time campaign performance visibility for enterprise advertisers.
-- Optimized Data processing architecture through multi-stage Snowflake pipelines (raw → staging → complete) ensuring Data integrity while accommodating delayed ingestion from streaming sources.
+- Built revenue-impacting, direct-to-client data pipelines for the entirety of Hulu, Disney+, and GAM ad-logs for vendor reporting, ad-targeting, and maintaining CCPA and GDPR data compliance within internal tables using GCP, Snowflake, Airflow, and Python, enabling real-time campaign performance visibility for enterprise advertisers.
+- Optimized data processing architecture through multi-stage Snowflake pipelines (raw → staging → complete) ensuring data integrity while accommodating delayed ingestion from streaming sources.
 - Engineered a self-service reporting solution by integrating Habu clean room as a request management system, reducing redundant Data Engineer workload, eliminating duplicate client charges, and increasing advertiser confidence through transparent campaign analytics.
 
 ### [Pinterest](https://pinterest.com) \| Data Analyst, Martech \hfill
@@ -73,23 +73,23 @@ Lewis‐Clark State College | Bachelors, Mathematics \hfill Lewiston, ID | GPA: 
 
 - Built an automated insights generation system that transformed manual reporting processes into programmatic workflows, reducing analysis time from days to hours for high-value advertisers by leveraging Presto, Spark SQL, and Pandas.
 - Conducted sophisticated cohort analysis identifying statistically significant behavior patterns among targeted user segments, enabling advertisers to optimize campaign targeting and increase conversion rates.
-- Engineered Data pipelines that automatically populated Google Sheets with visualizations and used internal ML tools to generate contextual narratives, dramatically scaling the insights delivery process.
+- Engineered data pipelines that automatically populated Google Sheets with visualizations and used internal ML tools to generate contextual narratives, dramatically scaling the insights delivery process.
 - Led technical investigation identifying causal factors affecting content engagement rates based on upload methodologies, uncovering critical platform optimizations for publisher growth.
 
 ### [Kochava](https://kochava.com) \| Senior Data Analyst, Adtech \hfill
 *Full-Time, Sandpoint, ID* \hfill *Jan. 2019 - Jan. 2023*
 
-- Developed a proprietary attribution modeling system processing Data from $3.5B in annual ad spend, using time-delta analysis to distinguish between organic and ad-driven conversions.
+- Developed a proprietary attribution modeling system processing data from $3.5B in annual ad spend, using time-delta analysis to distinguish between organic and ad-driven conversions.
 - Created advanced fraud detection algorithms analyzing temporal patterns in user behavior, identifying non-human traffic patterns that would have otherwise inflated campaign performance metrics.
 - Engineered a lifetime value calculation framework connecting ad impressions to in-app purchase events, enabling advertisers to optimize campaigns based on true incremental ROI rather than click-through rates.
-- Directed incremental lift studies and control group analytics for flagship clients, including TikTok, utilizing advanced Data analysis to reveal strategic insights for ad optimization and communicating complex findings to C-suite and non-technical stakeholders, influencing Data-driven decision-making.
+- Directed incremental lift studies and control group analytics for flagship clients, including TikTok, utilizing advanced data analysis to reveal strategic insights for ad optimization and communicating complex findings to C-suite and non-technical stakeholders, influencing data-driven decision-making.
 
 ## Projects Experience
 
 ### Polling subreddit posts with Airflow, Google Cloud Function, and BigQuery \hfill
 *Jan. 2023*
 
-- Built an automation system that polls a subreddit via REST API, dedupes the posts in a database, and streams the Data to a pub/sub topic. I also wrote a consumer client that consumes from the topic and relays updates to its downstream clients.
+- Built an automation system that polls a subreddit via REST API, dedupes the posts in a database, and streams the data to a pub/sub topic. I also wrote a consumer client that consumes from the topic and relays updates to its downstream clients.
 
 ### Predicting Lichess chess winners with RandomForest and XGBoost \hfill
 *Jan. 2020*
