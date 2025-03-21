@@ -16,9 +16,9 @@ contact:
 section_order:
   - profile
   - education
+  - skills
   - experience
   - certifications
-  - skills
   - projects
   - publications
 
@@ -26,8 +26,8 @@ section_order:
 section_titles:
   profile: "Profile Summary"
   education: "Education"
-  certifications: "Certifications"
   skills: "Technical Skills"
+  certifications: "Certifications"
   experience: "Professional Experience"
   projects: "Projects Experience"
   publications: "Publications"

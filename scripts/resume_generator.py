@@ -56,8 +56,18 @@ def process_keywords(input_file, output_file):
         # Lower-case and remove punctuation
         text = text.lower()
         text = re.sub(r'[^\w\s]', ' ', text)
-        # Split on whitespace
-        return text.split()
+        # Split on whitespace and handle multi-word phrases
+        keywords = []
+        for word in text.split():
+            keywords.append(word)
+        # Also add the original text as a potential multi-word phrase
+        if not pd.isnull(text) and len(text.strip()) > 0:
+            original_text = text.lower()
+            original_text = re.sub(r'[^\w\s-]', ' ', original_text)
+            # Add the entire phrase if it contains multiple words
+            if len(original_text.split()) > 1:
+                keywords.append(original_text)
+        return keywords
     
     # Apply extraction to both columns
     df["high_keywords"] = df["high_priority_keywords"].apply(extract_keywords)
@@ -118,7 +128,42 @@ def load_resume_config(config_file):
         print(f"Error loading configuration: {e}")
         return None
 
-def generate_resume(template_file, config_file, output_file, apply_formatting=True):
+def find_unused_keywords(resume_content, keywords_file, min_count=2):
+    """Find keywords from the processed file that aren't in the resume content"""
+    try:
+        df = pd.read_csv(keywords_file)
+        
+        # Filter keywords by count
+        df = df[df['count'] >= min_count]
+        
+        # Convert resume content to lowercase for comparison
+        resume_lower = resume_content.lower()
+        
+        # Find keywords not in resume
+        unused_keywords = []
+        for _, row in df.iterrows():
+            keyword = row['keyword']
+            # Skip one-letter keywords and keywords less than 3 characters
+            if len(keyword) < 3:
+                continue
+            
+            # Check if the keyword is not in the resume
+            if keyword.lower() not in resume_lower:
+                # Capitalize properly
+                if keyword in SPECIAL_TERMS:
+                    unused_keywords.append(SPECIAL_TERMS[keyword])
+                elif keyword.lower() == keyword:
+                    # Capitalize first letter of each word
+                    unused_keywords.append(keyword.title())
+                else:
+                    unused_keywords.append(keyword)
+        
+        return unused_keywords
+    except Exception as e:
+        print(f"Error finding unused keywords: {e}")
+        return []
+
+def generate_resume(template_file, config_file, output_file, keywords_file=None, apply_formatting=True):
     """Generate resume from template and config"""
     print(f"Generating resume from {template_file}...")
     
@@ -129,6 +174,32 @@ def generate_resume(template_file, config_file, output_file, apply_formatting=Tr
     # Apply basic formatting
     if apply_formatting:
         content = fix_capitalization(content)
+    
+    # Add unused keywords if keywords file is provided
+    if keywords_file and os.path.exists(keywords_file):
+        unused_keywords = find_unused_keywords(content, keywords_file)
+        
+        # Check if Keywords section already exists, if not add it
+        if '## Keywords' not in content:
+            # See if we need to append at the end
+            if unused_keywords:
+                content += "\n\n## Keywords\n\n"
+                content += ", ".join(unused_keywords)
+        else:
+            # Update existing Keywords section
+            pattern = r'(## Keywords\s*\n\s*\n)(.+?)(\n\s*$|\n\s*##)'
+            match = re.search(pattern, content, re.DOTALL)
+            
+            if match:
+                # Replace existing Keywords section
+                if unused_keywords:
+                    replacement = f"{match.group(1)}{', '.join(unused_keywords)}{match.group(3)}"
+                    content = content[:match.start()] + replacement + content[match.end():]
+            else:
+                # Keywords section exists but doesn't match expected pattern
+                # Just append keywords at the end of the file
+                if unused_keywords:
+                    content += "\n\n" + ", ".join(unused_keywords)
     
     # Write output
     with open(output_file, 'w') as f:
@@ -206,8 +277,8 @@ def main():
     keywords_output = os.path.join(os.path.dirname(args.output), 'processed_keywords.csv')
     keywords = process_keywords(args.input, keywords_output)
     
-    # Generate resume from template
-    generate_resume(args.template, args.config, args.output)
+    # Generate resume from template, passing the keywords file
+    generate_resume(args.template, args.config, args.output, keywords_file=keywords_output)
     
     # Generate PDF if requested
     if args.pdf:
