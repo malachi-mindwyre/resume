@@ -158,6 +158,12 @@ def fix_formatting(content):
         if lines[i].startswith('*') and not lines[i].startswith('**') and not lines[i].startswith('- '):
             # This is likely a date in italics
             lines[i] = f"*{lines[i].strip('*')}*"
+            
+        # Special handling for & characters in technical skills
+        if "Cloud & DevOps" in lines[i]:
+            lines[i] = lines[i].replace("Cloud & DevOps", "Cloud \\& DevOps")
+        if "Frameworks & Libraries" in lines[i]:
+            lines[i] = lines[i].replace("Frameworks & Libraries", "Frameworks \\& Libraries")
     
     content_without_headers = '\n'.join(lines)
     
