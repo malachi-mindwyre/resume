@@ -179,27 +179,22 @@ def generate_resume(template_file, config_file, output_file, keywords_file=None,
     if keywords_file and os.path.exists(keywords_file):
         unused_keywords = find_unused_keywords(content, keywords_file)
         
-        # Check if Keywords section already exists, if not add it
-        if '## Keywords' not in content:
-            # See if we need to append at the end
-            if unused_keywords:
+        if unused_keywords:
+            # Check if Keywords section already exists
+            keyword_match = re.search(r'## Keywords\s*\n\s*\n(.*?)(?=\n\s*\n##|\n*$)', content, re.DOTALL)
+            
+            if keyword_match:
+                # Extract existing keywords
+                existing_keywords = keyword_match.group(1).strip()
+                # Combine with new keywords
+                all_keywords = existing_keywords + ", " + ", ".join(unused_keywords)
+                # Replace existing Keywords section content
+                content = content.replace(keyword_match.group(0), f"## Keywords\n\n{all_keywords}")
+            else:
+                # No Keywords section found, add one at the end
+                content = content.rstrip()
                 content += "\n\n## Keywords\n\n"
                 content += ", ".join(unused_keywords)
-        else:
-            # Update existing Keywords section
-            pattern = r'(## Keywords\s*\n\s*\n)(.+?)(\n\s*$|\n\s*##)'
-            match = re.search(pattern, content, re.DOTALL)
-            
-            if match:
-                # Replace existing Keywords section
-                if unused_keywords:
-                    replacement = f"{match.group(1)}{', '.join(unused_keywords)}{match.group(3)}"
-                    content = content[:match.start()] + replacement + content[match.end():]
-            else:
-                # Keywords section exists but doesn't match expected pattern
-                # Just append keywords at the end of the file
-                if unused_keywords:
-                    content += "\n\n" + ", ".join(unused_keywords)
     
     # Write output
     with open(output_file, 'w') as f:

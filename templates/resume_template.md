@@ -103,6 +103,6 @@ App Developer Magazine, "New Lookback Attribution Windows for SAN Networks." \hf
 \textbf{Big Data Technologies}: Apache Spark, PySpark, Hadoop, Hive, Pig  
 \textbf{Cloud Services}: Pub/Sub, Datastream, Vertex AI, Google Kubernetes Engine (GKE), Snowpipe, AWS Batch, AWS Data Pipeline, EC2, Kinesis, Elasticache, SageMaker, Docker
 
-## \textcolor{accent}{Keywords}
+## Keywords
 
 BigQuery, Apache, Business Intelligence, BI, ETL, Pipeline, Statistics, Clustering, Backend, Back End, DevOps, Information Security, API, Project Management, Performance Optimization, Problem Solving, Attention to Detail, Advanced Analytics, Data Architecture, Cloud Computing, Machine Learning, Predictive Analytics, Data Science, Campaign Optimization, AWS, Azure, Power BI, PowerBI, DynamoDB, Dynamo DB, Decision Making, Business Objectives
