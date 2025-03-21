@@ -6,6 +6,7 @@ This script provides a straightforward way to:
 1. Process keywords from job descriptions
 2. Apply them to a resume template
 3. Format the resume and generate a PDF
+4. Upload the PDF to Google Drive
 """
 
 import pandas as pd
@@ -15,7 +16,12 @@ import subprocess
 import yaml
 import argparse
 import shutil
+import pickle
 from collections import Counter
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+from googleapiclient.http import MediaFileUpload
 
 # Default capitalization rules
 SPECIAL_TERMS = {
@@ -28,6 +34,13 @@ SPECIAL_TERMS = {
     'gcp': 'GCP',
     'etl': 'ETL',
 }
+
+# Google Drive folder ID where you want to save your resume
+# Replace with your own folder ID
+DRIVE_FOLDER_ID = '1s6n9eS9d2NNy9lyXgoYdPGOwkyGGujnw'
+
+# If modifying these scopes, delete the file token.pickle.
+SCOPES = ['https://www.googleapis.com/auth/drive.file']
 
 # Default YAML header for the resume
 YAML_HEADER = """---
@@ -200,6 +213,85 @@ def generate_resume(template_file, config_file, output_file, keywords_file=None,
     print(f"Resume saved to {output_file}")
     return content
 
+def get_google_drive_service():
+    """Get authenticated Google Drive service."""
+    creds = None
+    # The file token.pickle stores the user's access and refresh tokens
+    if os.path.exists('token.pickle'):
+        with open('token.pickle', 'rb') as token:
+            creds = pickle.load(token)
+    
+    # If there are no (valid) credentials available, let the user log in
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            # Look for any client_secret*.json file in the project root
+            project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            client_secret_files = [f for f in os.listdir(project_root) if f.startswith('client_secret') and f.endswith('.json')]
+            
+            if not client_secret_files:
+                raise FileNotFoundError("No client_secret.json file found in project root. Please add your Google API credentials.")
+                
+            client_secret_file = os.path.join(project_root, client_secret_files[0])
+            flow = InstalledAppFlow.from_client_secrets_file(client_secret_file, SCOPES)
+            creds = flow.run_local_server(port=0)
+        
+        # Save the credentials for the next run
+        with open('token.pickle', 'wb') as token:
+            pickle.dump(creds, token)
+    
+    service = build('drive', 'v3', credentials=creds)
+    return service
+
+def upload_to_drive(file_path, folder_id=DRIVE_FOLDER_ID):
+    """Upload a file to Google Drive in the specified folder."""
+    try:
+        service = get_google_drive_service()
+        
+        file_name = os.path.basename(file_path)
+        
+        # Check if the file already exists
+        query = f"name = '{file_name}' and '{folder_id}' in parents and trashed = false"
+        results = service.files().list(q=query, fields="files(id, name)").execute()
+        items = results.get('files', [])
+        
+        file_metadata = {
+            'name': file_name,
+            'parents': [folder_id]
+        }
+        
+        media = MediaFileUpload(file_path, resumable=True)
+        
+        if items:
+            # Update existing file
+            file_id = items[0]['id']
+            file = service.files().update(
+                fileId=file_id,
+                media_body=media,
+                fields='id'
+            ).execute()
+            print(f"Updated existing file in Google Drive: {file_name}")
+        else:
+            # Create new file
+            file = service.files().create(
+                body=file_metadata,
+                media_body=media,
+                fields='id'
+            ).execute()
+            print(f"Uploaded new file to Google Drive: {file_name}")
+        
+        # Get the file's web view link
+        file_id = file.get('id')
+        file_info = service.files().get(fileId=file_id, fields='webViewLink').execute()
+        web_link = file_info.get('webViewLink')
+        
+        return web_link
+    
+    except Exception as e:
+        print(f"Error uploading to Google Drive: {e}")
+        return None
+
 def generate_pdf(markdown_file, output_dir="."):
     """Generate PDF from markdown file using pandoc"""
     print("Generating PDF...")
@@ -259,6 +351,7 @@ def main():
     parser.add_argument('--config', default='resume_config.yaml', help='Resume configuration YAML')
     parser.add_argument('--output', default='data/output/resume.md', help='Output resume markdown')
     parser.add_argument('--pdf', action='store_true', help='Generate PDF')
+    parser.add_argument('--upload', action='store_true', help='Upload PDF to Google Drive')
     parser.add_argument('--basename', help='Base name for output files (e.g., "john_doe" will generate john_doe_resume.md)')
     
     args = parser.parse_args()
@@ -286,6 +379,7 @@ def main():
     generate_resume(args.template, args.config, base_output, keywords_file=keywords_output)
     
     # Generate PDF if requested
+    pdf_file = None
     if args.pdf:
         pdf_output = output_dir
         pdf_file = generate_pdf(base_output, pdf_output)
@@ -293,6 +387,15 @@ def main():
             print(f"Resume PDF available at: {pdf_file}")
         else:
             print("PDF generation failed.")
+    
+    # Upload to Google Drive if requested
+    if args.upload and pdf_file:
+        print("Uploading to Google Drive...")
+        drive_link = upload_to_drive(pdf_file)
+        if drive_link:
+            print(f"Resume uploaded to Google Drive: {drive_link}")
+        else:
+            print("Upload to Google Drive failed.")
     
     print("Resume generation complete!")
 

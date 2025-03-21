@@ -41,6 +41,7 @@ executed_resume.ipynb
 credentials.json
 token.json
 token.pickle
+client_secret*.json
 
 # Backup folders
 backup/

@@ -9,6 +9,7 @@ cd "$(dirname "$0")"
 
 # Initialize variables
 BASENAME=""
+UPLOAD=false
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -17,6 +18,10 @@ while [[ $# -gt 0 ]]; do
         --basename)
             BASENAME="$2"
             shift 2
+            ;;
+        --upload)
+            UPLOAD=true
+            shift
             ;;
         *)
             shift
@@ -39,6 +44,12 @@ COMMAND="python3 scripts/resume_generator.py --input data/input/lead_gen.csv --t
 if [ -n "$BASENAME" ]; then
     COMMAND="$COMMAND --basename \"$BASENAME\""
     echo "Using basename: $BASENAME"
+fi
+
+# Add upload parameter if enabled
+if [ "$UPLOAD" = true ]; then
+    COMMAND="$COMMAND --upload"
+    echo "Will upload PDF to Google Drive"
 fi
 
 # Execute the command
