@@ -10,7 +10,9 @@ cd "$(dirname "$0")"
 # Clear output directory while preserving the directory itself
 echo "Clearing output directory..."
 mkdir -p data/output
-rm -f data/output/*
+rm -rf data/output/* data/output/.*
+# Ensure no hidden files remain (except . and ..)
+find data/output -type f -name ".*" -delete
 
 # Run the resume generator
 echo "Generating resume..."
