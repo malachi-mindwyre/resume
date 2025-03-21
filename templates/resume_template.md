@@ -89,15 +89,12 @@ Full-Time, Sandpoint, ID \hfill Jan. 2019 - Jan. 2023
 ## Projects Experience
 
 ### Polling subreddit posts with Airflow, Google Cloud Function, and BigQuery \hfill Jan. 2023
-
 - Built an automation system that polls a subreddit via REST API, dedupes the posts in a database, and streams the data to a pub/sub topic. I also wrote a consumer client that consumes from the topic and relays updates to its downstream clients.
 
 ### Predicting Lichess chess winners with RandomForest and XGBoost \hfill Jan. 2020
-
 - Predicted chess winner based on a series of first opening moves and associated features, and then determined the best openings to play ‐ which matches current chess literature.
 
 ### Interaction factoring and age prediction of drug users in Colorado \hfill Dec. 2019
-
 - Developed R plots that showed interactions of various narcotics and narcotics found within overdose victims and determined likelihood of death based on demographic group via clustering algorithm.
 
 ## Publications
