@@ -252,11 +252,11 @@ def generate_pdf(markdown_file, output_dir="pdf"):
 
 def main():
     parser = argparse.ArgumentParser(description='Update resume with keywords and generate PDF')
-    parser.add_argument('--resume', default='markdown/resume.md', help='Input resume markdown file')
-    parser.add_argument('--keywords', default='processed_keywords.csv', help='Processed keywords CSV file')
+    parser.add_argument('--resume', default='templates/resume.md', help='Input resume markdown file')
+    parser.add_argument('--keywords', default='data/output/processed_keywords.csv', help='Processed keywords CSV file')
     parser.add_argument('--output', help='Output resume file (default: same as input)')
     parser.add_argument('--pdf', action='store_true', help='Generate PDF after updating')
-    parser.add_argument('--pdf-dir', default='pdf', help='Directory for PDF output')
+    parser.add_argument('--pdf-dir', default='data/output', help='Directory for PDF output')
     
     args = parser.parse_args()
     

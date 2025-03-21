@@ -27,19 +27,19 @@ def log(message, level="INFO"):
 # Configuration parameters
 config = {
     # Input files
-    "input_keywords_file": "lead_gen.csv",             # Raw keywords input
+    "input_keywords_file": "data/input/lead_gen.csv",        # Raw keywords input
     
     # Output files
-    "processed_keywords_file": "processed_keywords.csv", # Processed keywords output
-    "output_resume_name": "resume",                     # Base name for output files
+    "processed_keywords_file": "data/output/processed_keywords.csv", # Processed keywords output
+    "output_resume_name": "resume",                      # Base name for output files
     
     # Directory structure
-    "markdown_dir": "markdown",                         # Directory for markdown files
-    "pdf_dir": "pdf",                                   # Directory for PDF files
+    "templates_dir": "templates",                        # Directory for template markdown files
+    "output_dir": "data/output",                         # Directory for output files
     
     # Options
-    "top_keywords": 20,                                 # Number of top keywords to highlight
-    "generate_pdf": True,                               # Try to generate PDF
+    "top_keywords": 20,                                  # Number of top keywords to highlight
+    "generate_pdf": True,                                # Try to generate PDF
 }
 
 # Print configuration
@@ -48,18 +48,27 @@ for key, value in config.items():
     log(f"Config: {key} = {value}")
 
 # Create directory structure
-os.makedirs(config["markdown_dir"], exist_ok=True)
-os.makedirs(config["pdf_dir"], exist_ok=True)
+os.makedirs(config["templates_dir"], exist_ok=True)
+os.makedirs(config["output_dir"], exist_ok=True)
+os.makedirs(os.path.dirname(config["input_keywords_file"]), exist_ok=True)
 
 # Set file paths based on configuration
-config["input_resume_file"] = os.path.join(config["markdown_dir"], f"{config['output_resume_name']}.md")
-config["output_resume_file"] = config["input_resume_file"]
-config["output_pdf_file"] = os.path.join(config["pdf_dir"], f"{config['output_resume_name']}.pdf")
+config["input_resume_file"] = os.path.join(config["templates_dir"], f"{config['output_resume_name']}.md")
+config["output_resume_file"] = os.path.join(config["output_dir"], f"{config['output_resume_name']}.md")
+config["output_pdf_file"] = os.path.join(config["output_dir"], f"{config['output_resume_name']}.pdf")
 
-# Import required modules
-sys.path.append(os.getcwd())
-import keywords_processor
-import update_resume
+# Get script directory and base path
+script_dir = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.dirname(script_dir)
+os.chdir(base_dir)  # Change to the base directory
+
+# Add both base dir and scripts dir to path
+sys.path.append(base_dir)
+sys.path.append(script_dir)
+
+# Import the modules directly (they'll be found in scripts dir)
+import scripts.keywords_processor as keywords_processor
+import scripts.update_resume as update_resume
 
 # Step 1: Process keywords
 print("\n===== Step 1: Process Keywords =====")
@@ -121,7 +130,7 @@ if config["generate_pdf"]:
         # Try to generate PDF using update_resume module
         pdf_path = update_resume.generate_pdf(
             config["output_resume_file"],
-            config["pdf_dir"]
+            config["output_dir"]
         )
         
         # Check if PDF was generated successfully
@@ -129,7 +138,7 @@ if config["generate_pdf"]:
             log(f"PDF generation complete: {pdf_path}")
         else:
             # If not, check if PDF exists from previous runs
-            default_pdf_path = os.path.join(config["pdf_dir"], f"{config['output_resume_name']}.pdf")
+            default_pdf_path = os.path.join(config["output_dir"], f"{config['output_resume_name']}.pdf")
             if os.path.exists(default_pdf_path):
                 log(f"Using existing PDF: {default_pdf_path}", "WARNING")
                 pdf_path = default_pdf_path
@@ -139,7 +148,7 @@ if config["generate_pdf"]:
     except Exception as e:
         log(f"Error during PDF generation: {e}", "ERROR")
         # Check if PDF exists despite the error
-        default_pdf_path = os.path.join(config["pdf_dir"], f"{config['output_resume_name']}.pdf")
+        default_pdf_path = os.path.join(config["output_dir"], f"{config['output_resume_name']}.pdf")
         if os.path.exists(default_pdf_path):
             log(f"Using existing PDF despite error: {default_pdf_path}", "WARNING")
             pdf_path = default_pdf_path

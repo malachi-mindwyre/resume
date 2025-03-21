@@ -82,7 +82,7 @@ def process_keywords(input_file, output_file):
     return high_df, low_df
 
 if __name__ == "__main__":
-    high_df, low_df = process_keywords("lead_gen.csv", "processed_keywords.csv")
+    high_df, low_df = process_keywords("data/input/lead_gen.csv", "data/output/processed_keywords.csv")
     
     print("High Priority Keywords Count:")
     print(high_df.to_string(index=False))
