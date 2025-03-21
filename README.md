@@ -5,17 +5,21 @@ This tool helps you maintain a keyword-optimized resume by analyzing job descrip
 ## Components
 
 1. **resume_generator.ipynb** - Interactive Jupyter notebook with user-friendly interface (recommended)
-2. **scripts/keywords_processor.py** - Processes raw keyword data from job listings and preserves multi-word terms
-3. **scripts/update_resume.py** - Updates your resume with relevant keywords and generates PDF
-4. **scripts/easy_resume_processor.py** - Single script that runs the entire process
-5. **scripts/easy_resume_processor_with_drive.py** - Process with Google Drive integration
-6. **scripts/google_drive_handler.py** - Handles Google Drive operations
-7. **scripts/update_all.sh** - Simple shell script to run the entire process
+2. **scripts/generate_complete_resume.py** - Complete resume generation with configurable section ordering
+3. **scripts/resume_generator.py** - Flexible resume structure generator based on YAML configuration
+4. **scripts/keywords_processor.py** - Processes raw keyword data from job listings and preserves multi-word terms
+5. **scripts/update_resume.py** - Updates resume with relevant keywords and generates PDF
+6. **scripts/easy_resume_processor.py** - Simple script that runs the entire process
+7. **scripts/easy_resume_processor_with_drive.py** - Process with Google Drive integration
+8. **scripts/google_drive_handler.py** - Handles Google Drive operations
+9. **scripts/update_all.sh** - Simple shell script to run the entire process
 
 ## Directory Structure
 
 - **scripts/** - Contains all processing scripts
-- **templates/** - Contains template files (resume.md and formatting guides)
+- **templates/** - Contains template files and configuration
+  - **templates/resume_config.yaml** - Controls resume structure and section ordering
+  - **templates/sections/** - Optional directory for individual section content
 - **data/input/** - Contains input data (lead_gen.csv)
 - **data/output/** - Contains generated output files (processed_keywords.csv, resume.md, resume.pdf)
 
@@ -177,3 +181,37 @@ If PDF generation fails with LaTeX errors:
    - Processed and formatted
    - Generated as PDF
    - Uploaded to Google Drive with a shareable link
+
+### Customizing Resume Structure
+
+The resume structure, section ordering, and content can be fully customized:
+
+1. Edit the configuration file:
+   ```bash
+   nano templates/resume_config.yaml
+   ```
+
+2. Change the section ordering in the `section_order` list:
+   ```yaml
+   section_order:
+     - profile
+     - skills  # Move skills before education
+     - education
+     - certifications
+     - experience
+     - projects
+     - publications
+   ```
+
+3. Hide sections by setting their visibility to false:
+   ```yaml
+   section_visibility:
+     publications: false  # Hide the publications section
+   ```
+
+4. Generate resume with custom structure:
+   ```bash
+   python3 scripts/generate_complete_resume.py
+   ```
+
+For advanced customization, you can create individual section content files in the `templates/sections/` directory, with each file named after the section (e.g., `profile.md`, `skills.md`).

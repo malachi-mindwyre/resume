@@ -209,6 +209,14 @@ def highlight_keywords(resume_file, output_file, keywords):
     # Clean up formatting without adding bold to keywords
     processed_content = fix_formatting(content)
     
+    # Fix italics with LaTeX for proper PDF rendering
+    # Replace markdown italics with LaTeX \textit for positions and dates with \hfill
+    processed_content = re.sub(
+        r'\*([^*\n]+?)\* \\hfill \*([^*\n]+?)\*',
+        r'\\textit{\1} \\hfill \\textit{\2}',
+        processed_content
+    )
+    
     # Create directory if it doesn't exist
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     
