@@ -105,6 +105,34 @@ def fix_formatting(content):
     # Fix capitalization throughout the document
     content_without_headers = proper_case(content_without_headers)
     
+    # Fix common capitalization errors - lowercase these words when not at the start of a sentence
+    words_to_lowercase = ['data', 'cloud', 'database', 'analytics']
+    for word in words_to_lowercase:
+        # Only replace if not at start of line or after period and not in job titles
+        pattern = r'(?<!\n)(?<!\. )(?<!\n- )(?<!\: )(?<!\n### )(?<!\n## )(?<!\n# )(?<!\*\*)(?<!\()(?<!\")' + word.capitalize()
+        content_without_headers = re.sub(pattern, word, content_without_headers, flags=re.IGNORECASE)
+    
+    # Fix job titles and sections with "Data" that should be capitalized
+    content_without_headers = content_without_headers.replace("data Engineer", "Data Engineer")
+    content_without_headers = content_without_headers.replace("data Scientist", "Data Scientist")
+    content_without_headers = content_without_headers.replace("data Analyst", "Data Analyst")
+    content_without_headers = content_without_headers.replace("senior data Engineer", "Senior Data Engineer")
+    content_without_headers = content_without_headers.replace("Senior data Engineer", "Senior Data Engineer")
+    content_without_headers = content_without_headers.replace("lead data Engineer", "Lead Data Engineer")
+    content_without_headers = content_without_headers.replace("Lead data Engineer", "Lead Data Engineer")
+    content_without_headers = content_without_headers.replace("senior data Analyst", "Senior Data Analyst")
+    content_without_headers = content_without_headers.replace("Senior data Analyst", "Senior Data Analyst")
+    content_without_headers = content_without_headers.replace("redundant data Engineer", "redundant Data Engineer")
+    
+    # Fix in profile summary
+    content_without_headers = content_without_headers.replace("Accomplished data Engineer", "Accomplished Data Engineer")
+    
+    # Fix section headings and tool names
+    content_without_headers = content_without_headers.replace("Data Engineering Tools", "Data Engineering Tools")
+    content_without_headers = content_without_headers.replace("Data Visualization", "Data Visualization")
+    content_without_headers = content_without_headers.replace("Big data,", "Big Data,")
+    content_without_headers = content_without_headers.replace("databricks", "Databricks")
+    
     # Ensure italics formatting for dates and positions
     lines = content_without_headers.split('\n')
     
@@ -166,6 +194,9 @@ def fix_formatting(content):
         pattern = fr'{company} \| '
         replacement = fr'[{company}]({url}) \| '
         content_without_headers = re.sub(pattern, replacement, content_without_headers)
+    
+    # Fix italics in job titles and dates
+    content_without_headers = re.sub(r'\*([^*]+?)\* \\hfill \*([^*]+?)\*', r'*\1* \\hfill *\2*', content_without_headers)
     
     # Reconstruct the full content
     return yaml_header + latex_header + content_without_headers
