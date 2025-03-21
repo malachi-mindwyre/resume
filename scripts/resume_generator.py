@@ -167,6 +167,13 @@ def generate_resume(config, output_file, content_dir=None, fix_italics=True):
         # First, escape any & characters that might be interpreted as alignment tabs in LaTeX
         resume_content = resume_content.replace(" & ", " \\& ")
         
+        # Special case for technical skills section - handle the category names with bold properly
+        resume_content = re.sub(
+            r'\*\*([^*\n]+?)\*\*',
+            r'\\textbf{\1}',
+            resume_content
+        )
+        
         # Replace markdown italics with LaTeX \emph
         # For positions and dates with \hfill
         resume_content = re.sub(

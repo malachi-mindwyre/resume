@@ -1,33 +1,35 @@
-# Format overrides
-# This file contains explicit format overrides that will be applied directly after
-# resume generation and before other processing steps.
+# Resume Format Overrides
 
-# Job titles and dates must be in proper LaTeX italic format
+## Job Titles
 JOB_TITLES = [
-  "Contract, Remote",
-  "6mo. Contract, Remote",
-  "12mo. Contract, Remote",
-  "Full-Time, Sandpoint, ID",
-  "Jan. 2023",
-  "Jan. 2020",
-  "Dec. 2019",
-  "Feb. 2022",
-  "Aug. 2024 - Current",
-  "Jan. 2024 - Jul. 2024",
-  "Jan. 2023 - Jan. 2024",
-  "Jan. 2019 - Jan. 2023"
+    "Contract, Remote",
+    "6mo. Contract, Remote",
+    "12mo. Contract, Remote", 
+    "Full-Time, Sandpoint, ID",
+    "Jan. 2023",
+    "Jan. 2020",
+    "Dec. 2019",
+    "Aug. 2024 - Current",
+    "Jan. 2024 - Jul. 2024",
+    "Jan. 2023 - Jan. 2024",
+    "Jan. 2019 - Jan. 2023",
+    "Feb. 2022"
 ]
 
-# Certifications and titles must have proper capitalization
+## Capitalizations
 CAPITALIZATIONS = [
-  "AWS Cloud DevOps Certification",
-  "Cloud and DevOps",
-  "Google Cloud Platform",
-  "AWS Batch",
-  "AWS Data Pipeline",
-  "GAM ad-logs",
-  "CCPA and GDPR",
-  "GDPR data compliance",
-  "CCPA and GDPR data compliance",
-  "Slack, Jira"
+    "AWS Cloud DevOps",
+    "AWS Cloud",
+    "Google Cloud Platform",
+    "Cloud Services",
+    "Cloud and DevOps",
+    "Data Engineer",
+    "Data Scientist",
+    "Data Analyst",
+    "Senior Data Engineer",
+    "Lead Data Engineer",
+    "Senior Data Analyst",
+    "Data Engineering Tools",
+    "Data Visualization",
+    "Big Data"
 ]

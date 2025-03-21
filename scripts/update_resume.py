@@ -34,6 +34,8 @@ def proper_case(text):
         'powerbi': 'PowerBI',
         'gcp': 'GCP',
         'aws': 'AWS',
+        'aws cloud': 'AWS Cloud',  # Special case for AWS Cloud
+        'aws cloud devops': 'AWS Cloud DevOps',  # Special case for AWS Cloud DevOps
         'azure': 'Azure',
         'saas': 'SaaS',
         'pandas': 'Pandas',
@@ -281,9 +283,16 @@ def highlight_keywords(resume_file, output_file, keywords):
     
     # Apply overrides for capitalization
     for term in capitalizations:
-        # Create pattern that will match the term regardless of case for "Cloud"
-        pattern = term.replace('Cloud', '[Cc]loud')
-        processed_content = re.sub(pattern, term, processed_content, flags=re.IGNORECASE)
+        if 'AWS Cloud' in term:
+            # Directly replace the AWS cloud DevOps pattern
+            processed_content = processed_content.replace('AWS cloud DevOps', 'AWS Cloud DevOps')
+            # Use regex for other patterns with AWS Cloud
+            pattern = r'AWS\s+[Cc]loud'
+            processed_content = re.sub(pattern, 'AWS Cloud', processed_content)
+        else:
+            # Create pattern that will match the term regardless of case for "Cloud"
+            pattern = term.replace('Cloud', '[Cc]loud')
+            processed_content = re.sub(pattern, term, processed_content, flags=re.IGNORECASE)
     
     # Cleanup any protected keywords that might have been left
     processed_content = processed_content.replace("_PROTECTED_", " ")
