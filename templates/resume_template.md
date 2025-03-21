@@ -84,7 +84,7 @@ Full-Time, Sandpoint, ID \hfill Jan. 2019 - Jan. 2023
 
 ## \textcolor{accent}{Publications}
 
-App Developer Magazine, "New Lookback Attribution Windows for SAN Networks." \hfill Feb. 2022
+\textbf{App Developer Magazine, "New Lookback Attribution Windows for SAN Networks." \hfill Feb. 2022}
 
 ## \textcolor{accent}{Certifications}
 
