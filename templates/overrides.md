@@ -11,7 +11,11 @@ JOB_TITLES = [
   "Jan. 2023",
   "Jan. 2020",
   "Dec. 2019",
-  "Feb. 2022"
+  "Feb. 2022",
+  "Aug. 2024 - Current",
+  "Jan. 2024 - Jul. 2024",
+  "Jan. 2023 - Jan. 2024",
+  "Jan. 2019 - Jan. 2023"
 ]
 
 # Certifications and titles must have proper capitalization
@@ -20,5 +24,10 @@ CAPITALIZATIONS = [
   "Cloud and DevOps",
   "Google Cloud Platform",
   "AWS Batch",
-  "AWS Data Pipeline"
+  "AWS Data Pipeline",
+  "GAM ad-logs",
+  "CCPA and GDPR",
+  "GDPR data compliance",
+  "CCPA and GDPR data compliance",
+  "Slack, Jira"
 ]
