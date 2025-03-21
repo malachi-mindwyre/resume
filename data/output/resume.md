@@ -32,17 +32,6 @@ header-includes:
 - **Specialized in predictive analytics**, time-series data, and utilization of ML models in MMM, MTA, and other marketing and advertising strategies, leveraging these skills to drive data-driven decision-making and optimization strategies.
 - **Effective collaborator** within agile environments and SDLC, utilizing interpersonal skills to reach alignment among various teams with differing priorities, to ensure steady progress even within tight deadlines.
 
-## \textcolor{accent}{Technical Skills}
-
-\textbf{Languages}: Python, R, Scala, SAS, Matlab  
-\textbf{Databases}: Snowflake, Redshift, PostgreSQL, MySQL, NoSQL, DynamoDB, Aurora, RDS  
-\textbf{Data Engineering Tools}: Airflow, dbt, Git, GitHub, Snowpipe, Docker, Kubernetes, Databricks  
-\textbf{Data Visualization}: Tableau, Looker, Power BI, Matplotlib, Seaborn  
-\textbf{Cloud and DevOps}: GCP (Google Cloud Platform), AWS (Amazon Web Services), Microsoft Azure, Databricks, Docker, Kubernetes, SageMaker  
-\textbf{Frameworks \& Libraries}: Pandas, NumPy, Sci-kit learn (SciPy), TensorFlow, PyTorch, XGBoost, LightGBM, CatBoost, Matplotlib, Seaborn  
-\textbf{Big Data Technologies}: Apache Spark, PySpark, Hadoop, Hive, Pig  
-\textbf{Cloud Services}: Pub/Sub, Datastream, Vertex AI, Google Kubernetes Engine (GKE), Snowpipe, AWS Batch, AWS Data Pipeline, EC2, Kinesis, Elasticache, SageMaker, Docker
-
 ## \textcolor{accent}{Education}
 
 Georgia Institute of Technology | Masters, Analytics \hfill Atlanta, GA (In Progress)
@@ -82,12 +71,6 @@ Full-Time, Sandpoint, ID \hfill Jan. 2019 - Jan. 2023
 - Engineered a lifetime value calculation framework connecting ad impressions to in-app purchase events, enabling advertisers to optimize campaigns based on true incremental ROI rather than click-through rates.
 - Directed incremental lift studies and control group analytics for flagship clients, including TikTok, utilizing advanced data analysis to reveal strategic insights for ad optimization and communicating complex findings to C-suite and non-technical stakeholders, influencing data-driven decision-making.
 
-## \textcolor{accent}{Certifications}
-
-- **Data Engineering, Big Data, and Machine Learning on GCP Specialization**
-- **AWS Cloud DevOps Certification**
-- **AWS Certified Machine Learning**
-
 ## \textcolor{accent}{Projects Experience}
 
 ### Polling subreddit posts with Airflow, Google Cloud Function, and BigQuery \hfill Jan. 2023
@@ -102,6 +85,23 @@ Full-Time, Sandpoint, ID \hfill Jan. 2019 - Jan. 2023
 ## \textcolor{accent}{Publications}
 
 App Developer Magazine, "New Lookback Attribution Windows for SAN Networks." \hfill Feb. 2022
+
+## \textcolor{accent}{Certifications}
+
+- **Data Engineering, Big Data, and Machine Learning on GCP Specialization**
+- **AWS Cloud DevOps Certification**
+- **AWS Certified Machine Learning**
+
+## \textcolor{accent}{Technical Skills}
+
+\textbf{Languages}: Python, R, Scala, SAS, Matlab  
+\textbf{Databases}: Snowflake, Redshift, PostgreSQL, MySQL, NoSQL, DynamoDB, Aurora, RDS  
+\textbf{Data Engineering Tools}: Airflow, dbt, Git, GitHub, Snowpipe, Docker, Kubernetes, Databricks  
+\textbf{Data Visualization}: Tableau, Looker, Power BI, Matplotlib, Seaborn  
+\textbf{Cloud and DevOps}: GCP (Google Cloud Platform), AWS (Amazon Web Services), Microsoft Azure, Databricks, Docker, Kubernetes, SageMaker  
+\textbf{Frameworks \& Libraries}: Pandas, NumPy, Sci-kit learn (SciPy), TensorFlow, PyTorch, XGBoost, LightGBM, CatBoost, Matplotlib, Seaborn  
+\textbf{Big Data Technologies}: Apache Spark, PySpark, Hadoop, Hive, Pig  
+\textbf{Cloud Services}: Pub/Sub, Datastream, Vertex AI, Google Kubernetes Engine (GKE), Snowpipe, AWS Batch, AWS Data Pipeline, EC2, Kinesis, Elasticache, SageMaker, Docker
 
 ## \textcolor{accent}{Keywords}
 
