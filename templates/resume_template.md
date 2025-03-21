@@ -39,7 +39,7 @@ Lewis‐Clark State College | Bachelors, Mathematics \hfill Lewiston, ID | GPA: 
 ## Professional Experience
 
 ### [CopperWyre](https://copperwyre.com) \| Senior Data Engineer, Martech \hfill
-\textit{Contract, Remote} \hfill \textit{Aug. 2024 - Current}
+Contract, Remote \hfill Aug. 2024 - Current
 
 - Performed ETL on user data to send to Experian and Liveramp that allowed advertising partners to target specific users based on different attributes in targeted MMM and MTA ad-campaigns.
 - Increased user match-rates to advertising partners for user targeting by restructuring legacy SQL and Python code that optimized internal data collection techniques.
@@ -47,14 +47,14 @@ Lewis‐Clark State College | Bachelors, Mathematics \hfill Lewiston, ID | GPA: 
 - Automated A/B test experiments by creating executable VertexAI / Google Colab notebooks that automated test and control Martech campaign KNN matching for Google PLA feed experiments designed to increase revenue on targeted advertisements.
 
 ### [Disney](https://disney.com) \| Lead Data Engineer, Adtech \hfill
-\textit{6mo. Contract, Remote} \hfill \textit{Jan. 2024 - Jul. 2024}
+6mo. Contract, Remote \hfill Jan. 2024 - Jul. 2024
 
 - Built revenue-impacting, direct-to-client data pipelines for the entirety of Hulu, Disney+, and GAM ad-logs for vendor reporting, ad-targeting, and maintaining CCPA and GDPR data compliance within internal tables using GCP, Snowflake, Airflow, and Python, enabling real-time campaign performance visibility for enterprise advertisers.
 - Optimized data processing architecture through multi-stage Snowflake pipelines (raw → staging → complete) ensuring data integrity while accommodating delayed ingestion from streaming sources.
 - Engineered a self-service reporting solution by integrating Habu clean room as a request management system, reducing redundant Data Engineer workload, eliminating duplicate client charges, and increasing advertiser confidence through transparent campaign analytics.
 
 ### [Pinterest](https://pinterest.com) \| Data Analyst, Martech \hfill
-\textit{12mo. Contract, Remote} \hfill \textit{Jan. 2023 - Jan. 2024}
+12mo. Contract, Remote \hfill Jan. 2023 - Jan. 2024
 
 - Built an automated insights generation system that transformed manual reporting processes into programmatic workflows, reducing analysis time from days to hours for high-value advertisers by leveraging Presto, Spark SQL, and Pandas.
 - Conducted sophisticated cohort analysis identifying statistically significant behavior patterns among targeted user segments, enabling advertisers to optimize campaign targeting and increase conversion rates.
@@ -62,7 +62,7 @@ Lewis‐Clark State College | Bachelors, Mathematics \hfill Lewiston, ID | GPA: 
 - Led technical investigation identifying causal factors affecting content engagement rates based on upload methodologies, uncovering critical platform optimizations for publisher growth.
 
 ### [Kochava](https://kochava.com) \| Senior Data Analyst, Adtech \hfill
-\textit{Full-Time, Sandpoint, ID} \hfill \textit{Jan. 2019 - Jan. 2023}
+Full-Time, Sandpoint, ID \hfill Jan. 2019 - Jan. 2023
 
 - Developed a proprietary attribution modeling system processing data from $3.5B in annual ad spend, using time-delta analysis to distinguish between organic and ad-driven conversions.
 - Created advanced fraud detection algorithms analyzing temporal patterns in user behavior, identifying non-human traffic patterns that would have otherwise inflated campaign performance metrics.
@@ -89,20 +89,20 @@ Lewis‐Clark State College | Bachelors, Mathematics \hfill Lewiston, ID | GPA: 
 ## Projects Experience
 
 ### Polling subreddit posts with Airflow, Google Cloud Function, and BigQuery \hfill
-\textit{Jan. 2023}
+Jan. 2023
 
 - Built an automation system that polls a subreddit via REST API, dedupes the posts in a database, and streams the data to a pub/sub topic. I also wrote a consumer client that consumes from the topic and relays updates to its downstream clients.
 
 ### Predicting Lichess chess winners with RandomForest and XGBoost \hfill
-\textit{Jan. 2020}
+Jan. 2020
 
 - Predicted chess winner based on a series of first opening moves and associated features, and then determined the best openings to play ‐ which matches current chess literature.
 
 ### Interaction factoring and age prediction of drug users in Colorado \hfill
-\textit{Dec. 2019}
+Dec. 2019
 
 - Developed R plots that showed interactions of various narcotics and narcotics found within overdose victims and determined likelihood of death based on demographic group via clustering algorithm.
 
 ## Publications
 
-App Developer Magazine, "New Lookback Attribution Windows for SAN Networks." \hfill \textit{Feb. 2022}
+App Developer Magazine, "New Lookback Attribution Windows for SAN Networks." \hfill Feb. 2022
