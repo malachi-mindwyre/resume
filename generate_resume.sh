@@ -1,5 +1,5 @@
 #!/bin/bash
-# Simple script to generate resume
+# Resume Generator for job-specific optimization
 
 # Make script executable
 # chmod +x generate_resume.sh
@@ -10,6 +10,8 @@ cd "$(dirname "$0")"
 # Initialize variables
 BASENAME=""
 UPLOAD=false
+JOB_TYPE="data_engineer"
+TEMPLATE="general"
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -22,6 +24,14 @@ while [[ $# -gt 0 ]]; do
         --upload)
             UPLOAD=true
             shift
+            ;;
+        --job-type)
+            JOB_TYPE="$2"
+            shift 2
+            ;;
+        --template)
+            TEMPLATE="$2"
+            shift 2
             ;;
         *)
             shift
@@ -36,9 +46,24 @@ rm -rf data/output/* data/output/.*
 # Ensure no hidden files remain (except . and ..)
 find data/output -type f -name ".*" -delete
 
+# Validate job type and template
+if [ ! -d "job_types/$JOB_TYPE" ]; then
+    echo "Error: Job type '$JOB_TYPE' not found."
+    echo "Available job types:"
+    find job_types -mindepth 1 -maxdepth 1 -type d | sort | sed 's|job_types/||' | sed 's|^|  - |'
+    exit 1
+fi
+
+if [ ! -f "job_types/$JOB_TYPE/templates/$TEMPLATE.md" ]; then
+    echo "Error: Template '$TEMPLATE' not found for job type '$JOB_TYPE'."
+    echo "Available templates for $JOB_TYPE:"
+    find "job_types/$JOB_TYPE/templates" -name "*.md" | sort | sed 's|.*/||' | sed 's|\.md$||' | sed 's|^|  - |'
+    exit 1
+fi
+
 # Run the resume generator
-echo "Generating resume..."
-COMMAND="python3 scripts/resume_generator.py --input data/input/lead_gen.csv --template templates/resume_template.md --config templates/resume_config.yaml --output data/output/resume.md --pdf"
+echo "Generating resume for $JOB_TYPE using $TEMPLATE template..."
+COMMAND="python3 scripts/resume_generator.py --job-type $JOB_TYPE --template $TEMPLATE --output data/output/resume.md --pdf"
 
 # Add basename parameter if provided
 if [ -n "$BASENAME" ]; then
@@ -54,8 +79,6 @@ fi
 
 # Execute the command
 eval $COMMAND
-
-echo "Resume generation complete!"
 
 # Show the output file paths based on basename
 if [ -n "$BASENAME" ]; then

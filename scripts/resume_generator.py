@@ -343,16 +343,51 @@ def generate_pdf(markdown_file, output_dir="."):
         return None
 
 def main():
-    parser = argparse.ArgumentParser(description='Simple Resume Generator')
-    parser.add_argument('--input', default='data/input/lead_gen.csv', help='Input job listings CSV')
-    parser.add_argument('--template', default='resume_template.md', help='Resume template markdown')
-    parser.add_argument('--config', default='resume_config.yaml', help='Resume configuration YAML')
-    parser.add_argument('--output', default='data/output/resume.md', help='Output resume markdown')
-    parser.add_argument('--pdf', action='store_true', help='Generate PDF')
-    parser.add_argument('--upload', action='store_true', help='Upload PDF to Google Drive')
-    parser.add_argument('--basename', help='Base name for output files (e.g., "john_doe" will generate john_doe_resume.md)')
+    parser = argparse.ArgumentParser(description='Resume Generator for Job-Specific Optimization')
+    parser.add_argument('--job-type', default='data_engineer', 
+                      help='Job type (e.g., data_engineer, data_scientist)')
+    parser.add_argument('--template', default='general', 
+                      help='Template variant to use (e.g., general, pinterest, google)')
+    parser.add_argument('--output', default='data/output/resume.md', 
+                      help='Output resume markdown')
+    parser.add_argument('--pdf', action='store_true', 
+                      help='Generate PDF')
+    parser.add_argument('--upload', action='store_true', 
+                      help='Upload PDF to Google Drive')
+    parser.add_argument('--basename', 
+                      help='Base name for output files (e.g., "john_doe" will generate john_doe_resume.md)')
     
     args = parser.parse_args()
+    
+    # Set paths based on job type and template
+    job_type_dir = os.path.join('job_types', args.job_type)
+    keywords_file = os.path.join(job_type_dir, 'keywords.csv')
+    template_file = os.path.join(job_type_dir, 'templates', f"{args.template}.md")
+    
+    # Check if job type directory exists
+    if not os.path.exists(job_type_dir):
+        print(f"Error: Job type '{args.job_type}' not found. Available job types:")
+        job_types = [name for name in os.listdir('job_types') 
+                    if os.path.isdir(os.path.join('job_types', name))]
+        for jt in job_types:
+            print(f"  - {jt}")
+        return
+    
+    # Check if template exists
+    if not os.path.exists(template_file):
+        print(f"Error: Template '{args.template}' not found for job type '{args.job_type}'. Available templates:")
+        templates_dir = os.path.join(job_type_dir, 'templates')
+        if os.path.exists(templates_dir):
+            templates = [os.path.splitext(name)[0] for name in os.listdir(templates_dir) 
+                        if name.endswith('.md')]
+            for t in templates:
+                print(f"  - {t}")
+        return
+    
+    # Check if keywords file exists
+    if not os.path.exists(keywords_file):
+        print(f"Error: Keywords file not found for job type '{args.job_type}'.")
+        return
     
     # Create output directory if needed
     output_dir = os.path.dirname(args.output)
@@ -371,10 +406,10 @@ def main():
     
     # Process keywords
     keywords_output = os.path.join(output_dir, 'processed_keywords.csv')
-    keywords = process_keywords(args.input, keywords_output)
+    keywords = process_keywords(keywords_file, keywords_output)
     
     # Generate resume from template, passing the keywords file
-    generate_resume(args.template, args.config, base_output, keywords_file=keywords_output)
+    generate_resume(template_file, None, base_output, keywords_file=keywords_output)
     
     # Generate PDF if requested
     pdf_file = None
