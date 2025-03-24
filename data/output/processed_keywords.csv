@@ -1,0 +1,156 @@
+keyword,count,priority
+python,36,high
+sql,29,high
+spark,23,high
+apache,21,high
+data,17,high
+airflow,13,high
+snowflake,12,high
+looker,12,high
+r,11,high
+azure,11,high
+tableau,11,high
+agile,10,high
+bigquery,9,high
+apache spark,9,high
+databricks,9,high
+nosql,8,high
+docker,8,high
+hadoop,7,high
+kubernetes,7,high
+mysql,7,high
+cloud,6,high
+google cloud,5,high
+gcp,5,high
+google,5,high
+pandas,5,high
+etl,5,high
+postgresql,5,high
+visualization,5,high
+data visualization,5,high
+big,4,high
+big data technologies,4,high
+compliance,4,high
+scala,4,high
+technologies,4,high
+engineer,3,high
+power,3,high
+github,3,high
+data engineer,3,high
+git,3,high
+power bi,3,high
+bi,3,high
+tensorflow,2,high
+pytorch,2,high
+numpy,2,high
+end,2,high
+back,2,high
+ccpa,2,high
+machine,2,high
+learning,2,high
+database,2,high
+fraud,2,high
+detection,2,high
+fraud detection,2,high
+matplotlib,2,high
+hive,2,high
+postgres,2,high
+machine learning,2,high
+powerbi,2,high
+back end,2,high
+dynamodb,2,high
+dynamo,2,high
+business,2,high
+db,2,high
+dynamo db,2,high
+statistics,2,high
+science,1,high
+data science,1,high
+performance,1,high
+information,1,high
+security,1,high
+information security,1,high
+structures,1,high
+campaign,1,high
+s,1,high
+advertising,1,high
+campaigns,1,high
+advertising campaigns,1,high
+objectives,1,high
+sas,1,high
+business objectives,1,high
+campaign performance,1,high
+rest,1,high
+data modeling,1,high
+modeling,1,high
+solutions,1,high
+data solutions,1,high
+intelligence,1,high
+business intelligence,1,high
+project,1,high
+management,1,high
+project management,1,high
+predictive,1,high
+analytics,1,high
+predictive analytics,1,high
+pipeline,1,high
+data pipeline,1,high
+kubernete,1,high
+infrastructure,1,high
+cloud infrastructure,1,high
+apis,1,high
+rest apis,1,high
+mathematics,1,high
+api,1,high
+data structures,1,high
+data,44,low
+etl,18,low
+data engineer,16,low
+engineer,16,low
+machine learning,13,low
+learning,13,low
+machine,13,low
+data modeling,11,low
+modeling,11,low
+compliance,11,low
+decision,8,low
+decision making,8,low
+visualization,8,low
+data visualization,8,low
+making,8,low
+database,7,low
+data pipeline,6,low
+pipeline,6,low
+mathematics,6,low
+api,5,low
+clustering,5,low
+cloud infrastructure,4,low
+infrastructure,4,low
+cloud,4,low
+predictive,3,low
+data solutions,3,low
+solutions,3,low
+devops,3,low
+predictive analytics,3,low
+analytics,3,low
+backend,3,low
+detection,2,low
+fraud,2,low
+fraud detection,2,low
+team,1,low
+cross functional,1,low
+functional,1,low
+cross,1,low
+collaboration,1,low
+interpersonal,1,low
+devop,1,low
+skills,1,low
+problem solving,1,low
+solving,1,low
+problem,1,low
+attention to detail,1,low
+detail,1,low
+to,1,low
+attention,1,low
+interpersonal skills,1,low
+team collaboration,1,low

@@ -1,0 +1,12 @@
+# Ignore all template files except resume_template.md
+templates/*
+!templates/resume_template.md
+!templates/resume_template_pin.md
+!templates/resume_template_pin_no_copperwyre.md
+
+# Ignore sensitive files
+client_secret.json
+token.pickle
+
+# Ignore output data
+data/output/*

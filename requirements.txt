@@ -1,0 +1,8 @@
+pandas>=1.0.0
+pyyaml>=5.1
+google-api-python-client>=2.0.0
+google-auth-httplib2>=0.1.0
+google-auth-oauthlib>=0.4.1
+tqdm>=4.50.0
+notebook>=6.0.0
+ipywidgets>=7.0.0
