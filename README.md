@@ -1,6 +1,6 @@
 # Resume Keywords Optimizer
 
-A streamlined tool to maintain a keyword-optimized resume by analyzing job descriptions and formatting your resume professionally.
+A streamlined tool to optimize your resume for ATS systems by analyzing job descriptions and adding relevant keywords. Focused on Data Engineer roles as the MVP.
 
 ![Resume Generator](https://img.shields.io/badge/Resume-Generator-blue)
 ![Python](https://img.shields.io/badge/Python-3.6+-blue)
@@ -9,13 +9,15 @@ A streamlined tool to maintain a keyword-optimized resume by analyzing job descr
 
 ## Overview
 
-This tool helps you create a professionally formatted resume that emphasizes keywords relevant to your target job market. It:
+This tool helps you create a professionally formatted resume that emphasizes keywords relevant to Data Engineering roles. It:
 
 1. Processes keywords from job listings
-2. Applies them to your resume template
-3. Formats your resume with consistent styling
-4. Generates a professional PDF
-5. Uploads the PDF to your Google Drive (optional)
+2. Identifies which keywords are missing from your resume
+3. Adds missing keywords to ensure ATS compatibility
+4. Applies job-specific templates to your resume
+5. Formats your resume with consistent styling
+6. Generates a professional PDF
+7. Uploads the PDF to your Google Drive (optional)
 
 ## Quick Start
 
@@ -23,10 +25,10 @@ This tool helps you create a professionally formatted resume that emphasizes key
 
 ```bash
 # Launch Jupyter notebook
-jupyter notebook generate_resume.ipynb
+jupiter notebook generate_resume.ipynb
 ```
 
-Then run the single cell in the notebook.
+Then run the notebook and complete the interactive form.
 
 ### Option 2: Using the Shell Script
 
@@ -56,8 +58,9 @@ chmod +x generate_resume.sh
 │   ├── resume_generator.py      # Main Python script
 │   └── get_refresh_token.py     # Google Drive authentication helper
 ├── templates/
-│   ├── resume_config.yaml       # Resume structure configuration
-│   └── resume_template.md       # Resume template (Markdown)
+│   ├── resume_template.md       # Base resume template
+│   ├── resume_template_pin.md   # Pinterest-specific template
+│   └── resume_template_pin_no_copperwyre.md # Alternative Pinterest template
 ├── generate_resume.ipynb        # Jupyter notebook for easy execution
 ├── generate_resume.sh           # Shell script to run the generator
 └── requirements.txt             # Python dependencies
@@ -67,8 +70,8 @@ chmod +x generate_resume.sh
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/malachi-mindwyre/resume.git
-   cd resume
+   git clone https://github.com/malachi-mindwyre/keywords.git
+   cd keywords
    ```
 
 2. Install all dependencies:
@@ -100,31 +103,50 @@ chmod +x generate_resume.sh
    - Place the credentials file in the project root
    - Run `python scripts/get_refresh_token.py` to authenticate once
 
+## How It Works
+
+### 1. Keyword Processing
+
+The system analyzes job descriptions from `data/input/lead_gen.csv` to identify:
+- **High priority keywords**: Essential terms for the job
+- **Low priority keywords**: Secondary terms that add value
+
+Keywords are processed, counted by frequency, and organized for analysis.
+
+### 2. Template Application
+
+Your resume information is formatted using a template specific to the job target:
+- `resume_template.md`: General purpose template
+- `resume_template_pin.md`: Pinterest-specific template
+- Other templates can be added for different companies/roles
+
+### 3. Keyword Analysis & Integration
+
+The system identifies which keywords from the job descriptions are missing from your resume and adds them to a dedicated "Keywords" section, ensuring your resume contains all the relevant terms that ATS systems look for.
+
+### 4. Output Generation
+
+The final resume is generated in both Markdown and PDF formats, with proper formatting for professional presentation. Optional upload to Google Drive is available.
+
 ## Customization
-
-### Add Your Job Keywords
-
-Edit `data/input/lead_gen.csv` to add job keywords:
-- **high_priority_keywords**: Keywords you want to emphasize
-- **low_priority_keywords**: Secondary keywords
 
 ### Customize Your Resume
 
-1. Edit `templates/resume_template.md` with your personal information
-2. Adjust `templates/resume_config.yaml` to configure:
-   - Your contact information
-   - Section ordering
-   - Custom section titles
+1. Edit one of the templates in the `templates/` directory with your personal information
+2. Modify the LinkedIn, GitHub, and other links to match your profiles
+3. Update your employment history, education, and other sections
 
 ### Special Capitalization
 
-The script handles special capitalization for technical terms like "AWS Cloud DevOps". You can modify these rules in `scripts/resume_generator.py`:
+The script handles special capitalization for technical terms. You can modify these rules in `scripts/resume_generator.py`:
 
 ```python
 SPECIAL_TERMS = {
     'aws': 'AWS',
     'aws cloud': 'AWS Cloud',
     'aws cloud devops': 'AWS Cloud DevOps',
+    'python': 'Python',
+    'sql': 'SQL',
     # Add more terms here...
 }
 ```
@@ -138,7 +160,8 @@ SPECIAL_TERMS = {
    jupyter notebook generate_resume.ipynb
    ```
 
-2. Run the cell in the notebook
+2. Complete the form with your name, template choice, and other options
+3. Click "Generate Resume" button
 
 ### Option 2: Using the Shell Script
 
@@ -160,7 +183,6 @@ SPECIAL_TERMS = {
 python3 scripts/resume_generator.py \
     --input data/input/lead_gen.csv \
     --template templates/resume_template.md \
-    --config templates/resume_config.yaml \
     --output data/output/resume.md \
     --pdf
 
@@ -168,7 +190,6 @@ python3 scripts/resume_generator.py \
 python3 scripts/resume_generator.py \
     --input data/input/lead_gen.csv \
     --template templates/resume_template.md \
-    --config templates/resume_config.yaml \
     --output data/output/resume.md \
     --pdf --upload
 ```
@@ -189,6 +210,14 @@ If you encounter any issues:
 3. **Google Drive upload issues**:
    - Check that `client_secret.json` exists in the project root
    - If authentication fails, delete `token.pickle` and try again
+
+## Future Enhancements
+
+- Interactive keyword placement suggestions
+- Support for additional job types beyond Data Engineer
+- More advanced resume structure customization
+- Direct parsing of PDF/DOCX resumes
+- Web-based interface
 
 ## Contributing
 
