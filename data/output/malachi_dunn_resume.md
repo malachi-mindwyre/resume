@@ -40,11 +40,11 @@ Lewis‐Clark State College | Bachelors, Mathematics \hfill Lewiston, ID | GPA: 
 
 ## \textcolor{accent}{Professional Experience}
 
-### \href{https://pinterest.com}{\textcolor{accent}{Pinterest}} \| Data Analyst, Martech \hfill
-7mo. Contract, Remote \hfill Aug. 2024 - Feb. 2025
+### \href{https://copperwyre.com}{\textcolor{accent}{CopperWyre}} \| Senior Data Engineer, Martech \hfill
+Contract, Remote \hfill Aug. 2024 - Current
 
-- Led technical investigation identifying causal factors affecting content engagement rates based on upload methodologies, uncovering critical platform optimizations for publisher growth.
-- Conducted sophisticated cohort analysis identifying statistically significant behavior patterns among targeted user segments, enabling advertisers to optimize campaign targeting and increase conversion rates.
+- Performed ETL on user data to send to Experian and Liveramp that allowed advertising partners to target specific users based on different attributes in targeted MMM and MTA ad-campaigns.
+- Increased user match-rates to advertising partners for user targeting by restructuring legacy SQL and Python code that optimized internal data collection techniques.
 - Developed a comprehensive media mix model that identified potential savings by optimizing channel allocation, maintaining overall sales performance while reducing marketing spend.
 - Automated A/B test experiments by creating executable VertexAI / Google Colab notebooks that automated test and control Martech campaign KNN matching for Google PLA feed experiments designed to increase revenue on targeted advertisements.
 
@@ -59,9 +59,9 @@ Lewis‐Clark State College | Bachelors, Mathematics \hfill Lewiston, ID | GPA: 
 12mo. Contract, Remote \hfill Jan. 2023 - Jan. 2024
 
 - Built an automated insights generation system that transformed manual reporting processes into programmatic workflows, reducing analysis time from days to hours for high-value advertisers by leveraging Presto, Spark SQL, and Pandas.
+- Conducted sophisticated cohort analysis identifying statistically significant behavior patterns among targeted user segments, enabling advertisers to optimize campaign targeting and increase conversion rates.
 - Engineered data pipelines that automatically populated Google Sheets with visualizations and used internal ML tools to generate contextual narratives, dramatically scaling the insights delivery process.
-- Performed ETL on user data to send to Experian and Liveramp that allowed advertising partners to target specific users based on different attributes in targeted MMM and MTA ad-campaigns.
-- Increased user match-rates to advertising partners for user targeting by restructuring legacy SQL and Python code that optimized internal data collection techniques.
+- Led technical investigation identifying causal factors affecting content engagement rates based on upload methodologies, uncovering critical platform optimizations for publisher growth.
 
 ### \href{https://kochava.com}{\textcolor{accent}{Kochava}} \| Senior Data Analyst, Adtech \hfill
 Full-Time, Sandpoint, ID \hfill Jan. 2019 - Jan. 2023
