@@ -1,12 +1,47 @@
-# Ignore all template files except resume_template.md
-templates/*
+# Track only specific files
+# Ignore everything
+*
+
+# But not these files
+!.gitignore
+!README.md
+!resume_optimizer_spec.md
+!requirements.txt
+
+# Scripts
+!scripts/
+!scripts/*.py
+
+# Main executable files
+!generate_resume.sh
+!generate_resume.ipynb
+
+# Only track the data input directory, not its contents
+!data/
+!data/input/
+data/input/*
+!data/input/.gitkeep
+!data/output/
+data/output/*
+!data/output/.gitkeep
+
+# Only track the main job type structure and general template
+!job_types/
+!job_types/data_engineer/
+!job_types/data_engineer/keywords.csv
+!job_types/data_engineer/templates/
+!job_types/data_engineer/templates/general.md
+
+# Track only the main resume template
+!templates/
 !templates/resume_template.md
-!templates/resume_template_pin.md
-!templates/resume_template_pin_no_copperwyre.md
 
 # Ignore sensitive files
 client_secret.json
 token.pickle
 
-# Ignore output data
-data/output/*
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
