@@ -48,19 +48,19 @@ chmod +x generate_resume.sh
 ```
 /
 ├── data/
-│   ├── input/
-│   │   └── lead_gen.csv         # Job description keywords
-│   └── output/
+│   ├── input/                   # User uploads resumes here
+│   └── output/                  # Optimized resumes saved here
 │       ├── processed_keywords.csv # Analyzed keywords 
 │       ├── resume.md            # Generated resume (Markdown)
 │       └── resume.pdf           # Generated resume (PDF)
+├── job_types/                   # Job type-specific resources
+│   └── data_engineer/           # Data Engineer job type
+│       ├── keywords.csv         # Curated keywords for Data Engineers
+│       └── templates/           # Templates for Data Engineers
+│           └── general.md       # Generic Data Engineer template
 ├── scripts/
 │   ├── resume_generator.py      # Main Python script
 │   └── get_refresh_token.py     # Google Drive authentication helper
-├── templates/
-│   ├── resume_template.md       # Base resume template
-│   ├── resume_template_pin.md   # Pinterest-specific template
-│   └── resume_template_pin_no_copperwyre.md # Alternative Pinterest template
 ├── generate_resume.ipynb        # Jupyter notebook for easy execution
 ├── generate_resume.sh           # Shell script to run the generator
 └── requirements.txt             # Python dependencies
@@ -105,26 +105,32 @@ chmod +x generate_resume.sh
 
 ## How It Works
 
-### 1. Keyword Processing
+### 1. Job Type Selection
 
-The system analyzes job descriptions from `data/input/lead_gen.csv` to identify:
+The system is organized by job types (e.g., Data Engineer), each with:
+- A curated set of keywords specific to that job
+- Templates optimized for that job type
+- Specialized formatting guidelines
+
+### 2. Keyword Processing
+
+For each job type, the system analyzes its keyword file (e.g., `job_types/data_engineer/keywords.csv`) to identify:
 - **High priority keywords**: Essential terms for the job
 - **Low priority keywords**: Secondary terms that add value
 
 Keywords are processed, counted by frequency, and organized for analysis.
 
-### 2. Template Application
+### 3. Template Application
 
-Your resume information is formatted using a template specific to the job target:
-- `resume_template.md`: General purpose template
-- `resume_template_pin.md`: Pinterest-specific template
-- Other templates can be added for different companies/roles
+Your resume information is formatted using a template specific to the selected job type:
+- `general.md`: Generic template for the job type
+- Other company-specific templates available locally
 
-### 3. Keyword Analysis & Integration
+### 4. Keyword Analysis & Integration
 
 The system identifies which keywords from the job descriptions are missing from your resume and adds them to a dedicated "Keywords" section, ensuring your resume contains all the relevant terms that ATS systems look for.
 
-### 4. Output Generation
+### 5. Output Generation
 
 The final resume is generated in both Markdown and PDF formats, with proper formatting for professional presentation. Optional upload to Google Drive is available.
 
@@ -132,9 +138,15 @@ The final resume is generated in both Markdown and PDF formats, with proper form
 
 ### Customize Your Resume
 
-1. Edit one of the templates in the `templates/` directory with your personal information
+1. Edit the template files in `job_types/data_engineer/templates/` with your personal information
 2. Modify the LinkedIn, GitHub, and other links to match your profiles
 3. Update your employment history, education, and other sections
+
+### Adding New Job Types
+
+1. Create a new directory under `job_types/` for your job type (e.g., `data_scientist`)
+2. Add a `keywords.csv` file with high and low priority keywords for that job
+3. Create a `templates` directory with at least a `general.md` template
 
 ### Special Capitalization
 
@@ -166,14 +178,14 @@ SPECIAL_TERMS = {
 ### Option 2: Using the Shell Script
 
 ```bash
-# Generate resume and PDF
+# Generate resume and PDF with defaults (Data Engineer, general template)
 ./generate_resume.sh
 
 # Generate resume, PDF, and upload to Google Drive
 ./generate_resume.sh --upload
 
-# Generate with custom basename
-./generate_resume.sh --basename "John Doe" --upload
+# Generate with custom basename and specific template
+./generate_resume.sh --job-type data_engineer --template general --basename "John Doe" --upload
 ```
 
 ### Option 3: Running the Python Script Directly
@@ -181,15 +193,15 @@ SPECIAL_TERMS = {
 ```bash
 # Generate resume and PDF
 python3 scripts/resume_generator.py \
-    --input data/input/lead_gen.csv \
-    --template templates/resume_template.md \
+    --job-type data_engineer \
+    --template general \
     --output data/output/resume.md \
     --pdf
 
 # Generate resume, PDF, and upload to Google Drive
 python3 scripts/resume_generator.py \
-    --input data/input/lead_gen.csv \
-    --template templates/resume_template.md \
+    --job-type data_engineer \
+    --template general \
     --output data/output/resume.md \
     --pdf --upload
 ```

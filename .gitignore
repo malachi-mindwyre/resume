@@ -16,7 +16,7 @@
 !generate_resume.sh
 !generate_resume.ipynb
 
-# Only track the data input directory, not its contents
+# Only track the data input directory structure
 !data/
 !data/input/
 data/input/*
@@ -31,10 +31,6 @@ data/output/*
 !job_types/data_engineer/keywords.csv
 !job_types/data_engineer/templates/
 !job_types/data_engineer/templates/general.md
-
-# Track only the main resume template
-!templates/
-!templates/resume_template.md
 
 # Ignore sensitive files
 client_secret.json

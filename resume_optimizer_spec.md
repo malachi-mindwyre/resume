@@ -196,7 +196,7 @@ This system helps users optimize their resumes for specific job applications by:
        return content
    ```
 
-## Improved File Structure for Scalability
+## Simple File Structure
 
 ```
 keywords/
@@ -211,20 +211,16 @@ keywords/
 │   │   ├── keywords.csv              # Curated keywords for Data Engineers
 │   │   └── templates/                # Templates for Data Engineers
 │   │       ├── general.md            # Generic Data Engineer template
-│   │       ├── pinterest.md          # Pinterest-specific template
-│   │       └── google.md             # Google-specific template
+│   │       ├── pinterest.md          # Pinterest-specific template (local only)
+│   │       └── pinterest_alt.md      # Alternative Pinterest template (local only)
 │   ├── data_scientist/               # Data Scientist job type (future)
 │   │   ├── keywords.csv
 │   │   └── templates/
-│   │       ├── general.md
-│   │       └── ...
+│   │       └── general.md
 │   └── ...                           # Other job types
 ├── scripts/
 │   ├── resume_generator.py           # Main processing script
 │   └── get_refresh_token.py          # Google Drive authentication helper
-├── templates/                        # Global templates and partials
-│   ├── _header.md                    # Common header template
-│   └── _footer.md                    # Common footer template
 ├── generate_resume.sh                # Execution script
 ├── generate_resume.ipynb             # Jupyter interface
 └── requirements.txt                  # Python dependencies
