@@ -22,6 +22,9 @@ data/input/*
 !data/output/
 data/output/*
 !data/output/.gitkeep
+# Keep generic example output files
+!data/output/jane_doe_resume.md
+!data/output/jane_doe_resume.docx
 
 # Only track the main job type structure and general template
 !job_types/
@@ -34,6 +37,8 @@ data/output/*
 .env
 client_secret.json
 token.pickle
+data/input/test_resume.pdf
+job_types/*/templates/malachi_dunn*.*
 
 # Ignore Python cache files
 __pycache__/
