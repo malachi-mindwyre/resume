@@ -1,239 +1,155 @@
-# Resume Keywords Optimizer
+# Interactive Resume Optimizer
 
-A streamlined tool to optimize your resume for ATS systems by analyzing job descriptions and adding relevant keywords. Focused on Data Engineer roles as the MVP.
+[![Python](https://img.shields.io/badge/Python-3.9+-blue)](https://www.python.org)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange)](https://jupyter.org/)
+[![Pandas](https://img.shields.io/badge/Pandas-green)](https://pandas.pydata.org/)
+[![Google Gemini](https://img.shields.io/badge/AI-Google%20Gemini-purple)](https://ai.google.dev/)
+[![PDF](https://img.shields.io/badge/PDF-Generation-red)](https://pandoc.org/)
 
-![Resume Generator](https://img.shields.io/badge/Resume-Generator-blue)
-![Python](https://img.shields.io/badge/Python-3.6+-blue)
-![Pandas](https://img.shields.io/badge/Pandas-1.0+-green)
-![PDF](https://img.shields.io/badge/PDF-Generation-red)
+An interactive tool, run via Jupyter Notebook, to optimize your resume for Applicant Tracking Systems (ATS) by analyzing keyword coverage against specific job roles, allowing edits, providing AI suggestions, and generating a polished final resume.
 
 ## Overview
 
-This tool helps you create a professionally formatted resume that emphasizes keywords relevant to Data Engineering roles. It:
+This tool helps you tailor your resume by:
 
-1. Processes keywords from job listings
-2. Identifies which keywords are missing from your resume
-3. Adds missing keywords to ensure ATS compatibility
-4. Applies job-specific templates to your resume
-5. Formats your resume with consistent styling
-6. Generates a professional PDF
-7. Uploads the PDF to your Google Drive (optional)
+1.  **Uploading** your existing resume (PDF, DOCX, or Markdown recommended).
+2.  **Selecting** a target job type (e.g., Data Engineer, Software Engineer).
+3.  **Analyzing** keyword coverage based on a central, weighted keyword database.
+4.  **Displaying** overall coverage, missing keywords, and keyword distribution across sections.
+5.  **Providing an interactive editor** to modify resume sections and bullet points (works best with DOCX/MD input).
+6.  **Offering AI-powered suggestions** (via Google Gemini) to improve bullet points.
+7.  **Allowing** you to apply AI suggestions directly.
+8.  **Enabling** section reordering.
+9.  **Saving** your edited resume structure as a new custom template for the selected job type.
+10. **Generating** the final resume in Markdown and optionally PDF format.
+11. **Uploading** the generated PDF to Google Drive (optional).
 
-## Quick Start
+## Features
 
-### Option 1: Using Jupyter Notebook (Recommended)
-
-```bash
-# Launch Jupyter notebook
-jupiter notebook generate_resume.ipynb
-```
-
-Then run the notebook and complete the interactive form.
-
-### Option 2: Using the Shell Script
-
-```bash
-# Make the script executable
-chmod +x generate_resume.sh
-
-# Run the resume generator (without Google Drive upload)
-./generate_resume.sh
-
-# Run with Google Drive upload
-./generate_resume.sh --upload
-```
+*   **Multi-Format Upload:** Accepts `.pdf`, `.docx`, and `.md` resume files. (Note: Structural parsing for interactive editing is most reliable for `.docx` and `.md`).
+*   **Job Role Specialization:** Uses `keywords_db.csv` for weighted keywords specific to different roles (e.g., `de`, `se`, `ds`).
+*   **Keyword Analysis:** Calculates overall keyword coverage percentage, lists top missing keywords by weight, and shows keyword distribution across parsed sections.
+*   **Interactive Editor:** Allows direct editing of parsed resume sections and bullet points within the notebook.
+*   **Section Reordering:** Modify the order of resume sections before final generation.
+*   **AI Suggestions (Gemini):** Get suggestions for improving bullet points based on content and missing keywords.
+*   **Apply Suggestions:** Directly update bullet points with AI-generated suggestions.
+*   **Template Management:** Save your edited resume structure as a new custom template for the current job type.
+*   **Output Formats:** Generates optimized resume in Markdown (`.md`) and optionally PDF.
+*   **Google Drive Integration (Optional):** Upload the final PDF to a specified Google Drive folder.
 
 ## Project Structure
 
 ```
 /
+├── .env                   # Stores API keys (GITIGNORED)
+├── .gitignore             # Specifies intentionally untracked files
+├── README.md              # This file
+├── requirements.txt       # Python dependencies
+├── generate_resume.ipynb  # Main Jupyter Notebook interface
+├── keywords_db.csv        # Central database for all keywords
 ├── data/
-│   ├── input/                   # User uploads resumes here
-│   └── output/                  # Optimized resumes saved here
-│       ├── processed_keywords.csv # Analyzed keywords 
-│       ├── resume.md            # Generated resume (Markdown)
-│       └── resume.pdf           # Generated resume (PDF)
-├── job_types/                   # Job type-specific resources
-│   └── data_engineer/           # Data Engineer job type
-│       ├── keywords.csv         # Curated keywords for Data Engineers
-│       └── templates/           # Templates for Data Engineers
-│           └── general.md       # Generic Data Engineer template
-├── scripts/
-│   ├── resume_generator.py      # Main Python script
-│   └── get_refresh_token.py     # Google Drive authentication helper
-├── generate_resume.ipynb        # Jupyter notebook for easy execution
-├── generate_resume.sh           # Shell script to run the generator
-└── requirements.txt             # Python dependencies
+│   ├── input/             # Uploaded resumes go here (content GITIGNORED)
+│   │   └── .gitkeep
+│   └── output/            # Generated resumes saved here (content GITIGNORED)
+│       └── .gitkeep
+├── job_types/             # Job type-specific resources
+│   ├── data_engineer/     # Example: Data Engineer job type
+│   │   └── templates/     # Templates for Data Engineers
+│   │       └── general.md # Default template
+│   ├── data_scientist/    # Example: Data Scientist job type
+│   │   └── templates/
+│   │       └── general.md
+│   └── software_engineer/ # Example: Software Engineer job type
+│       └── templates/
+│           └── general.md
+└── scripts/
+    └── resume_generator.py  # Backend Python script with core logic
 ```
 
 ## Setup
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/malachi-mindwyre/keywords.git
-   cd keywords
-   ```
+1.  **Clone Repository:**
+    ```bash
+    git clone <your-repo-url>
+    cd keywords
+    ```
 
-2. Install all dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+2.  **Create Virtual Environment (Recommended):**
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate  # On Windows use `.venv\Scripts\activate`
+    ```
 
-3. Install Pandoc (required for PDF generation):
-   ```bash
-   # macOS
-   brew install pandoc
-   
-   # Ubuntu/Debian
-   sudo apt-get install pandoc
-   
-   # Windows
-   choco install pandoc
-   ```
+3.  **Install Dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-4. Make the script executable:
-   ```bash
-   chmod +x generate_resume.sh
-   ```
+4.  **API Keys & Credentials:**
+    *   **Google Gemini API Key (Required for AI Suggestions):**
+        *   Obtain an API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
+        *   Create a file named `.env` in the project root directory.
+        *   Add the following line to `.env`, replacing `YOUR_API_KEY_HERE` with your actual key:
+            ```
+            GOOGLE_API_KEY='YOUR_API_KEY_HERE'
+            ```
+        *   The `.gitignore` file is configured to prevent committing this file.
+    *   **Google Drive API Credentials (Optional - Only for GDrive Upload):**
+        *   Follow Google Cloud instructions to create OAuth 2.0 credentials for the Drive API.
+        *   Download the credentials JSON file and save it as `client_secret.json` in the project root.
+        *   The first time you use the Google Drive upload feature, you'll be prompted to authenticate via your browser. This will create a `token.pickle` file to store credentials for future runs.
+        *   Both `client_secret.json` and `token.pickle` are included in `.gitignore`.
 
-5. (Optional) For Google Drive upload functionality:
-   - Create a Google Cloud Platform project
-   - Enable the Google Drive API
-   - Create OAuth 2.0 credentials and download as `client_secret.json` (rename it to this exact name)
-   - Place the credentials file in the project root
-   - Run `python scripts/get_refresh_token.py` to authenticate once
+5.  **PDF Generation Dependencies (Optional - Only for PDF Output):**
+    *   **Pandoc:** Install Pandoc from [pandoc.org](https://pandoc.org/installing.html). Ensure it's added to your system's PATH.
+    *   **LaTeX:** A LaTeX distribution (like TeX Live, MiKTeX, or MacTeX) is required by Pandoc to create PDFs. Install one suitable for your OS and ensure `pdflatex` is in your system's PATH. The script includes a specific PATH addition for MacTeX (`/Library/TeX/texbin`) but might need adjustment on other systems if LaTeX isn't found automatically.
 
-## How It Works
+## Usage
 
-### 1. Job Type Selection
+1.  **Launch Jupyter:**
+    ```bash
+    # Using Jupyter Notebook
+    jupyter notebook generate_resume.ipynb
 
-The system is organized by job types (e.g., Data Engineer), each with:
-- A curated set of keywords specific to that job
-- Templates optimized for that job type
-- Specialized formatting guidelines
+    # Or using Jupyter Lab
+    jupyter lab
+    ```
+    Then open `generate_resume.ipynb`.
 
-### 2. Keyword Processing
+2.  **Run the First Cell:** Execute the first code cell in the notebook to load dependencies and set up the UI.
 
-For each job type, the system analyzes its keyword file (e.g., `job_types/data_engineer/keywords.csv`) to identify:
-- **High priority keywords**: Essential terms for the job
-- **Low priority keywords**: Secondary terms that add value
-
-Keywords are processed, counted by frequency, and organized for analysis.
-
-### 3. Template Application
-
-Your resume information is formatted using a template specific to the selected job type:
-- `general.md`: Generic template for the job type
-- Other company-specific templates available locally
-
-### 4. Keyword Analysis & Integration
-
-The system identifies which keywords from the job descriptions are missing from your resume and adds them to a dedicated "Keywords" section, ensuring your resume contains all the relevant terms that ATS systems look for.
-
-### 5. Output Generation
-
-The final resume is generated in both Markdown and PDF formats, with proper formatting for professional presentation. Optional upload to Google Drive is available.
+3.  **Use the UI:**
+    *   **Upload:** Upload your resume file (DOCX/MD recommended for best editing).
+    *   **Configure:** Enter your name, select the target Job Type, and choose a base Template. Decide on Google Drive upload.
+    *   **Generate (First Click):** Click the "Generate Resume" button. This parses the resume, displays the Keyword Analysis, and populates the Interactive Editor.
+    *   **Edit:** Modify content directly in the Textarea boxes within the editor's Accordion sections.
+    *   **Reorder (Optional):** Change the comma-separated list in the "Section Order" box.
+    *   **Get AI Suggestions (Optional):** Click the "Suggest" button next to Experience/Project bullet points.
+    *   **Apply Suggestions (Optional):** If you like a suggestion, click "Apply Suggestion".
+    *   **Save Template (Optional):** Enter a name and click "Save as Template" to save the current editor state.
+    *   **Generate (Second Click):** Click "Generate Resume" again. This uses your edits and section order to create the final `.md` and optional `.pdf` files in the `data/output/` directory and performs the optional Google Drive upload.
 
 ## Customization
 
-### Customize Your Resume
-
-1. Edit the template files in `job_types/data_engineer/templates/` with your personal information
-2. Modify the LinkedIn, GitHub, and other links to match your profiles
-3. Update your employment history, education, and other sections
-
-### Adding New Job Types
-
-1. Create a new directory under `job_types/` for your job type (e.g., `data_scientist`)
-2. Add a `keywords.csv` file with high and low priority keywords for that job
-3. Create a `templates` directory with at least a `general.md` template
-
-### Special Capitalization
-
-The script handles special capitalization for technical terms. You can modify these rules in `scripts/resume_generator.py`:
-
-```python
-SPECIAL_TERMS = {
-    'aws': 'AWS',
-    'aws cloud': 'AWS Cloud',
-    'aws cloud devops': 'AWS Cloud DevOps',
-    'python': 'Python',
-    'sql': 'SQL',
-    # Add more terms here...
-}
-```
-
-## Running the Tool
-
-### Option 1: Using the Jupyter Notebook (Recommended)
-
-1. Launch Jupyter:
-   ```bash
-   jupyter notebook generate_resume.ipynb
-   ```
-
-2. Complete the form with your name, template choice, and other options
-3. Click "Generate Resume" button
-
-### Option 2: Using the Shell Script
-
-```bash
-# Generate resume and PDF with defaults (Data Engineer, general template)
-./generate_resume.sh
-
-# Generate resume, PDF, and upload to Google Drive
-./generate_resume.sh --upload
-
-# Generate with custom basename and specific template
-./generate_resume.sh --job-type data_engineer --template general --basename "John Doe" --upload
-```
-
-### Option 3: Running the Python Script Directly
-
-```bash
-# Generate resume and PDF
-python3 scripts/resume_generator.py \
-    --job-type data_engineer \
-    --template general \
-    --output data/output/resume.md \
-    --pdf
-
-# Generate resume, PDF, and upload to Google Drive
-python3 scripts/resume_generator.py \
-    --job-type data_engineer \
-    --template general \
-    --output data/output/resume.md \
-    --pdf --upload
-```
+*   **Keywords:** Edit `keywords_db.csv` to add/remove/modify keywords, their weights, and associated roles.
+*   **Job Types:** Add new subdirectories under `job_types/` for new roles. Each needs a `templates/` subdirectory with at least a `general.md` file. Add the role code (e.g., `pm` for Project Manager) to relevant keywords in `keywords_db.csv`.
+*   **Templates:** Add new `.md` template files to the `job_types/{job_type}/templates/` directories. Use the "Save as Template" feature to create templates from your edits.
+*   **Capitalization:** Modify the `SPECIAL_TERMS` dictionary in `scripts/resume_generator.py` for custom capitalization rules.
 
 ## Troubleshooting
 
-If you encounter any issues:
-
-1. **Make sure all dependencies are installed**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. **PDF generation issues**:
-   - Verify Pandoc installation: `which pandoc`
-   - Ensure you have a LaTeX distribution installed (TeX Live or MiKTeX)
-
-3. **Google Drive upload issues**:
-   - Check that `client_secret.json` exists in the project root
-   - If authentication fails, delete `token.pickle` and try again
+*   **Dependencies:** Ensure all packages in `requirements.txt` are installed in your active environment (`pip install -r requirements.txt`).
+*   **PDF Generation Errors:** Verify Pandoc and a LaTeX distribution (with `pdflatex`) are installed and accessible in your system's PATH. Check the error messages from Pandoc in the notebook output.
+*   **Google Drive Errors:** Ensure `client_secret.json` is present if using the upload feature. Delete `token.pickle` and re-authenticate if token issues occur.
+*   **Gemini API Errors:** Check that your `GOOGLE_API_KEY` is correctly set in the `.env` file. Review error messages from the API (e.g., billing issues, content blocking). Check the Google AI Studio dashboard for API status.
+*   **PDF Parsing Issues:** Remember that parsing structure from PDFs is unreliable. Use DOCX or MD files for better results with the interactive editor.
 
 ## Future Enhancements
 
-- Interactive keyword placement suggestions
-- Support for additional job types beyond Data Engineer
-- More advanced resume structure customization
-- Direct parsing of PDF/DOCX resumes
-- Web-based interface
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+*   Implement multi-resume comparison.
+*   More advanced template management (e.g., deleting, editing existing).
+*   Option to start directly from a template without uploading a resume first.
+*   User accounts/profiles for saving preferences.
 
 ## License
 
