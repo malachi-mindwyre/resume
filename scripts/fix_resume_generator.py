@@ -3,11 +3,12 @@
 Fixed Resume Generator to address the base_output variable issue
 """
 
-import pandas as pd
 import os
-import re
-import subprocess
-import yaml
+import argparse
+import sys
+from resume_generator import (
+    load_keywords_for_job, generate_resume, generate_pdf
+)
 import argparse
 import sys
 from resume_generator import (
