@@ -22,9 +22,8 @@ data/input/*
 !data/output/
 data/output/*
 !data/output/.gitkeep
-# Keep generic example output files
+# Keep generic example output file
 !data/output/jane_doe_resume.md
-!data/output/jane_doe_resume.pdf
 
 # Only track the main job type structure and general template
 !job_types/
