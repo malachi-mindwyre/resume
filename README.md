@@ -34,8 +34,8 @@ This tool helps you tailor your resume by:
 *   **AI Suggestions (Gemini):** Get suggestions for improving bullet points based on content and missing keywords.
 *   **Apply Suggestions:** Directly update bullet points with AI-generated suggestions.
 *   **Template Management:** Save your edited resume structure as a new custom template for the current job type.
-*   **Output Formats:** Generates optimized resume in Markdown (`.md`) and optionally PDF.
-*   **Google Drive Integration (Optional):** Upload the final PDF to a specified Google Drive folder.
+*   **Output Formats:** Generates optimized resume in Markdown (`.md`). Optional PDF generation via Pandoc/LaTeX is included but may fail depending on resume content complexity and local TeX installation. The `.md` file is the primary reliable output.
+*   **Google Drive Integration (Optional):** Upload the final PDF (if successfully generated) to a specified Google Drive folder.
 
 ## Project Structure
 
@@ -100,9 +100,10 @@ This tool helps you tailor your resume by:
         *   The first time you use the Google Drive upload feature, you'll be prompted to authenticate via your browser. This will create a `token.pickle` file to store credentials for future runs.
         *   Both `client_secret.json` and `token.pickle` are included in `.gitignore`.
 
-5.  **PDF Generation Dependencies (Optional - Only for PDF Output):**
+5.  **PDF Generation Dependencies (Optional):**
     *   **Pandoc:** Install Pandoc from [pandoc.org](https://pandoc.org/installing.html). Ensure it's added to your system's PATH.
-    *   **LaTeX:** A LaTeX distribution (like TeX Live, MiKTeX, or MacTeX) is required by Pandoc to create PDFs. Install one suitable for your OS and ensure `pdflatex` is in your system's PATH. The script includes a specific PATH addition for MacTeX (`/Library/TeX/texbin`) but might need adjustment on other systems if LaTeX isn't found automatically.
+    *   **LaTeX:** A LaTeX distribution (like TeX Live, MiKTeX, or MacTeX) is required by Pandoc to create PDFs using the default `pdflatex` engine. Install one suitable for your OS and ensure `pdflatex` is in your system's PATH.
+    *   **Note:** PDF generation can be sensitive to special characters in the resume content and specific LaTeX configurations. If errors occur (like `Missing \begin{document}`), generating the PDF manually from the output `.md` file using alternative tools (VS Code extensions, other converters) might be necessary.
 
 ## Usage
 
@@ -127,7 +128,7 @@ This tool helps you tailor your resume by:
     *   **Get AI Suggestions (Optional):** Click the "Suggest" button next to Experience/Project bullet points.
     *   **Apply Suggestions (Optional):** If you like a suggestion, click "Apply Suggestion".
     *   **Save Template (Optional):** Enter a name and click "Save as Template" to save the current editor state.
-    *   **Generate (Second Click):** Click "Generate Resume" again. This uses your edits and section order to create the final `.md` and optional `.pdf` files in the `data/output/` directory and performs the optional Google Drive upload.
+    *   **Generate (Second Click):** Click "Generate Resume" again. This uses your edits and section order to create the final `.md` file (and attempt PDF generation) in the `data/output/` directory and performs the optional Google Drive upload. A comparison is shown.
 
 ## Customization
 
@@ -139,7 +140,7 @@ This tool helps you tailor your resume by:
 ## Troubleshooting
 
 *   **Dependencies:** Ensure all packages in `requirements.txt` are installed in your active environment (`pip install -r requirements.txt`).
-*   **PDF Generation Errors:** Verify Pandoc and a LaTeX distribution (with `pdflatex`) are installed and accessible in your system's PATH. Check the error messages from Pandoc in the notebook output.
+*   **PDF Generation Errors:** Verify Pandoc and a LaTeX distribution (with `pdflatex`) are installed and accessible in your system's PATH. Check the error messages from Pandoc in the notebook output. Complex content or specific LaTeX setups might cause failures; consider converting the output `.md` file manually using other tools if needed.
 *   **Google Drive Errors:** Ensure `client_secret.json` is present if using the upload feature. Delete `token.pickle` and re-authenticate if token issues occur.
 *   **Gemini API Errors:** Check that your `GOOGLE_API_KEY` is correctly set in the `.env` file. Review error messages from the API (e.g., billing issues, content blocking). Check the Google AI Studio dashboard for API status.
 *   **PDF Parsing Issues:** Remember that parsing structure from PDFs is unreliable. Use DOCX or MD files for better results with the interactive editor.
