@@ -12,6 +12,7 @@
 # Scripts
 !scripts/
 !scripts/*.py
+!scripts/*.sh
 
 # Main executable files
 !generate_resume.ipynb
@@ -35,6 +36,7 @@ data/output/*
 !job_types/data_engineer/keywords.csv
 !job_types/data_engineer/templates/
 !job_types/data_engineer/templates/general.md
+!job_types/data_engineer/templates/enhanced_general.md
 
 # Ignore sensitive files
 .env
