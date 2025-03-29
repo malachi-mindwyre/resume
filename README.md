@@ -34,7 +34,7 @@ This tool helps you tailor your resume by:
 *   **AI Suggestions (Gemini):** Get suggestions for improving bullet points based on content and missing keywords.
 *   **Apply Suggestions:** Directly update bullet points with AI-generated suggestions.
 *   **Template Management:** Save your edited resume structure as a new custom template for the current job type.
-*   **Output Formats:** Generates optimized resume in Markdown (`.md`). Optional PDF generation via Pandoc/LaTeX is included but may fail depending on resume content complexity and local TeX installation. The `.md` file is the primary reliable output.
+*   **Output Formats:** Generates optimized resume in Markdown (`.md`). Optional PDF generation via Pandoc/LaTeX is included but may fail depending on resume content complexity and local TeX installation; the `.md` file is the primary reliable output. A generic DOCX example output is included in the repository.
 *   **Google Drive Integration (Optional):** Upload the final PDF (if successfully generated) to a specified Google Drive folder.
 
 ## Project Structure
@@ -128,7 +128,7 @@ This tool helps you tailor your resume by:
     *   **Get AI Suggestions (Optional):** Click the "Suggest" button next to Experience/Project bullet points.
     *   **Apply Suggestions (Optional):** If you like a suggestion, click "Apply Suggestion".
     *   **Save Template (Optional):** Enter a name and click "Save as Template" to save the current editor state.
-    *   **Generate (Second Click):** Click "Generate Resume" again. This uses your edits and section order to create the final `.md` file (and attempt PDF generation) in the `data/output/` directory and performs the optional Google Drive upload. A comparison is shown.
+    *   **Generate (Second Click):** Click "Generate Resume" again. This uses your edits and section order to create the final `.md` file (and attempt PDF generation) in the `data/output/` directory and performs the optional Google Drive upload. A comparison is shown. (A static `.docx` example is also available in `data/output`).
 
 ## Customization
 
