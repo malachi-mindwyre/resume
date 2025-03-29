@@ -25,10 +25,15 @@ data/input/*
 !data/output/
 data/output/*
 !data/output/.gitkeep
+!data/output/jane_doe_resume.md
+!data/output/jane_doe_resume.pdf
 
 # Ignore any generated/temporary files
 *_fixed.md
 *resume_fixed.md
+*general_resume*
+*enhanced_*
+*malachi_dunn*
 
 # Only track the main job type structure and general template
 !job_types/
@@ -36,7 +41,6 @@ data/output/*
 !job_types/data_engineer/keywords.csv
 !job_types/data_engineer/templates/
 !job_types/data_engineer/templates/general.md
-!job_types/data_engineer/templates/enhanced_general.md
 
 # Ignore sensitive files
 .env
