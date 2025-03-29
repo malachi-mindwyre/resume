@@ -2,107 +2,73 @@
 geometry: margin=0.5in
 output: pdf_document
 header-includes:
-  - \usepackage{fancyhdr}
-  - \pagestyle{empty}
-  - \pagenumbering{gobble}
-  - \usepackage{hyperref}
-  - \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
-  - \usepackage{setspace}
-  - \singlespacing
-  - \usepackage{xcolor}
-  - \definecolor{accent}{RGB}{70,130,180}
-  - \renewcommand{\section}[1]{\vspace{1em}\large\textcolor{accent}{\textbf{#1}}\vspace{0.5em}}
+  - \\usepackage{fancyhdr}
+  - \\pagestyle{empty}
+  - \\pagenumbering{gobble}
+  - \\usepackage{hyperref}
+  - \\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
 ---
 
-\begin{center}
-\vspace{-0.3cm}
-{\Large\textbf{Malachi Dunn}}\\[0em]
-{\large Data Engineer • Data Scientist}\\[0em]
-\href{mailto:malachi@mindwyre.org}{malachi@mindwyre.org} | (+1) 208-625-1747 | Oldtown, ID 83822 United States\\[0em]
-\href{https://linkedin.com/in/malachidunn}{linkedin.com/in/malachidunn} | \href{https://github.com/malachi-mindwyre}{github.com/malachi-mindwyre} | \href{https://mindwyre.org}{mindwyre.org}
-\end{center}
+### Jane Doe
+Data Engineer | AWS Certified | Cloud Data Solutions
+(555) 123-4567 | jane.doe.email@email.com | [linkedin.com/in/janedoe-example](https://linkedin.com/in/janedoe-example) | [github.com/janedoe-example](https://github.com/janedoe-example)
 
+---
 
-## \textcolor{accent}{Profile Summary}
+## Profile Summary
 
-- Accomplished Data Engineer proficient in Python, SQL, Airflow, Spark, and Scala, including building ETL pipelines predominantly in a GCP cloud environment.
-- Solid proficiency in data modeling, database architecture, and utilization of cloud-based data solutions and back-end systems for distributed data processing.
-- Expert in streaming services, advertising, mobile apps, and web-scale architecture, with extensive experience working with REST APIs in batch and real-time processing of data.
-- Skilled in designing and executing scalable, data-driven solutions for Martech and Adtech.
-- Specialized in predictive analytics, time-series data, and utilization of ML models in MMM, MTA, and other marketing and advertising strategies, leveraging these skills to drive data-driven decision-making and optimization strategies.
-- Effective collaborator within agile environments and SDLC, utilizing interpersonal skills to reach alignment among various teams with differing priorities, to ensure steady progress even within tight deadlines.
+Results-oriented Data Engineer with 5+ years of experience designing, building, and maintaining scalable data pipelines and infrastructure, primarily within the AWS ecosystem. Proven ability to leverage services like S3, Redshift, Glue, EMR, and Lambda to process large datasets, optimize ETL workflows, and deliver actionable insights. Seeking to apply expertise in cloud data solutions and big data technologies to drive data-driven decision-making.
 
-## \textcolor{accent}{Education}
+## Technical Skills
 
-Georgia Institute of Technology | Masters, Analytics \hfill Atlanta, GA (In Progress)
+*   **Cloud Platforms:** AWS (S3, Redshift, Glue, EMR, Lambda, Kinesis, EC2, RDS, IAM, CloudWatch)
+*   **Data Warehousing:** Amazon Redshift, Snowflake (Basic)
+*   **ETL/Data Integration:** AWS Glue, Apache Airflow, Python (Boto3, Pandas), SQL
+*   **Big Data Technologies:** Apache Spark (PySpark), Hadoop Ecosystem (HDFS, Hive)
+*   **Databases:** PostgreSQL, MySQL, NoSQL (DynamoDB - Basic)
+*   **Programming Languages:** Python, SQL, Scala (Basic), Bash Scripting
+*   **BI & Visualization:** Tableau (Basic), AWS QuickSight (Basic)
+*   **DevOps & CI/CD:** Docker, Git, GitHub Actions (Basic), Terraform (Basic)
+*   **Operating Systems:** Linux, macOS, Windows
 
-Lewis‐Clark State College | Bachelors, Mathematics \hfill Lewiston, ID | GPA: 3.700/4.0
+## Professional Experience
 
-## \textcolor{accent}{Professional Experience}
+**Senior Data Engineer | CloudData Corp | Anytown, USA | 2020 – Present**
 
-### \href{https://copperwyre.com}{\textcolor{accent}{CopperWyre}} \| Senior Data Engineer, Martech \hfill
-Contract, Remote \hfill Aug. 2024 - Current
+*   Designed and implemented scalable ETL pipelines using AWS Glue and Python (PySpark) to process terabytes of clickstream data daily, reducing processing time by 30% and enabling faster reporting.
+*   Managed and optimized a large-scale Amazon Redshift data warehouse, implementing workload management (WLM) and performance tuning techniques that improved query performance by 25%.
+*   Developed and deployed serverless data processing workflows using AWS Lambda and Kinesis for real-time data ingestion and analysis.
+*   Built and maintained data orchestration jobs using Apache Airflow, ensuring reliable execution of complex dependencies across multiple AWS services.
+*   Collaborated with data scientists and analysts to understand data requirements and build data models optimized for analytical querying in Redshift.
+*   Utilized Terraform for provisioning and managing AWS data infrastructure, promoting Infrastructure as Code (IaC) best practices.
+*   Mentored junior data engineers on AWS best practices, Python scripting, and SQL optimization.
 
-- Performed ETL on user data to send to Experian and Liveramp that allowed advertising partners to target specific users based on different attributes in targeted MMM and MTA ad-campaigns.
-- Increased user match-rates to advertising partners for user targeting by restructuring legacy SQL and Python code that optimized internal data collection techniques.
-- Developed a comprehensive media mix model that identified potential savings by optimizing channel allocation, maintaining overall sales performance while reducing marketing spend.
-- Automated A/B test experiments by creating executable VertexAI / Google Colab notebooks that automated test and control Martech campaign KNN matching for Google PLA feed experiments designed to increase revenue on targeted advertisements.
+**Data Engineer | Tech Solutions Inc. | Somewhere, USA | 2018 – 2020**
 
-### \href{https://disney.com}{\textcolor{accent}{Disney}} \| Lead Data Engineer, Adtech \hfill
-6mo. Contract, Remote \hfill Jan. 2024 - Jul. 2024
+*   Developed Python scripts and SQL queries to extract, transform, and load data from various relational databases (PostgreSQL, MySQL) into a central data repository.
+*   Assisted in the migration of on-premises data pipelines to AWS, primarily using S3 and EC2-based processing.
+*   Created automated data quality checks using Python and SQL to ensure data integrity.
+*   Supported ad-hoc data requests from business stakeholders using SQL and basic data visualization tools.
 
-- Built revenue-impacting, direct-to-client data pipelines for the entirety of Hulu, Disney+, and GAM ad-logs for vendor reporting, ad-targeting, and maintaining CCPA and GDPR data compliance within internal tables using GCP, Snowflake, Airflow, and Python, enabling real-time campaign performance visibility for enterprise advertisers.
-- Optimized data processing architecture through multi-stage Snowflake pipelines (raw → staging → complete) ensuring data integrity while accommodating delayed ingestion from streaming sources.
-- Engineered a self-service reporting solution by integrating Habu clean room as a request management system, reducing redundant Data Engineer workload, eliminating duplicate client charges, and increasing advertiser confidence through transparent campaign analytics.
+## Education
 
-### \href{https://pinterest.com}{\textcolor{accent}{Pinterest}} \| Data Analyst, Martech \hfill
-12mo. Contract, Remote \hfill Jan. 2023 - Jan. 2024
+**M.S. in Computer Science | State University | Anytown, USA | 2018**
+*   Focus: Data Science & Cloud Computing
+*   Thesis: Performance Analysis of Distributed Data Processing Frameworks
 
-- Built an automated insights generation system that transformed manual reporting processes into programmatic workflows, reducing analysis time from days to hours for high-value advertisers by leveraging Presto, Spark SQL, and Pandas.
-- Conducted sophisticated cohort analysis identifying statistically significant behavior patterns among targeted user segments, enabling advertisers to optimize campaign targeting and increase conversion rates.
-- Engineered data pipelines that automatically populated Google Sheets with visualizations and used internal ML tools to generate contextual narratives, dramatically scaling the insights delivery process.
-- Led technical investigation identifying causal factors affecting content engagement rates based on upload methodologies, uncovering critical platform optimizations for publisher growth.
+**B.S. in Information Systems | Tech Institute | Somewhere, USA | 2016**
+*   Minor: Mathematics
 
-### \href{https://kochava.com}{\textcolor{accent}{Kochava}} \| Senior Data Analyst, Adtech \hfill
-Full-Time, Sandpoint, ID \hfill Jan. 2019 - Jan. 2023
+## Certifications
 
-- Developed a proprietary attribution modeling system processing data from $3.5B in annual ad spend, using time-delta analysis to distinguish between organic and ad-driven conversions.
-- Created advanced fraud detection algorithms analyzing temporal patterns in user behavior, identifying non-human traffic patterns that would have otherwise inflated campaign performance metrics.
-- Engineered a lifetime value calculation framework connecting ad impressions to in-app purchase events, enabling advertisers to optimize campaigns based on true incremental ROI rather than click-through rates.
-- Directed incremental lift studies and control group analytics for flagship clients, including TikTok, utilizing advanced data analysis to reveal strategic insights for ad optimization and communicating complex findings to C-suite and non-technical stakeholders, influencing data-driven decision-making.
+*   AWS Certified Data Analytics – Specialty (2021)
+*   AWS Certified Solutions Architect – Associate (2019)
 
-## \textcolor{accent}{Projects Experience}
+## Projects
 
-### Polling subreddit posts with Airflow, Google Cloud Function, and BigQuery \hfill Jan. 2023
-- Built an automation system that polls a subreddit via REST API, dedupes the posts in a database, and streams the data to a pub/sub topic. I also wrote a consumer client that consumes from the topic and relays updates to its downstream clients.
-
-### Predicting Lichess chess winners with RandomForest and XGBoost \hfill Jan. 2020
-- Predicted chess winner based on a series of first opening moves and associated features, and then determined the best openings to play ‐ which matches current chess literature.
-
-### Interaction factoring and age prediction of drug users in Colorado \hfill Dec. 2019
-- Developed R plots that showed interactions of various narcotics and narcotics found within overdose victims and determined likelihood of death based on demographic group via clustering algorithm.
-
-## \textcolor{accent}{Publications}
-
-\textbf{App Developer Magazine, "New Lookback Attribution Windows for SAN Networks." \hfill Feb. 2022}
-
-## \textcolor{accent}{Certifications}
-
-- **Data Engineering, Big Data, and Machine Learning on GCP Specialization**
-- **AWS Cloud DevOps Certification**
-- **AWS Certified Machine Learning**
-
-## \textcolor{accent}{Technical Skills}
-
-\textbf{Languages}: Python, R, Scala, SAS, Matlab  
-\textbf{Databases}: Snowflake, Redshift, PostgreSQL, MySQL, NoSQL, DynamoDB, Aurora, RDS  
-\textbf{Data Engineering Tools}: Airflow, dbt, Git, GitHub, Snowpipe, Docker, Kubernetes, Databricks  
-\textbf{Data Visualization}: Tableau, Looker, Power BI, Matplotlib, Seaborn  
-\textbf{Cloud and DevOps}: GCP (Google Cloud Platform), AWS (Amazon Web Services), Microsoft Azure, Databricks, Docker, Kubernetes, SageMaker  
-\textbf{Frameworks \& Libraries}: Pandas, NumPy, Sci-kit learn (SciPy), TensorFlow, PyTorch, XGBoost, LightGBM, CatBoost, Matplotlib, Seaborn  
-\textbf{Big Data Technologies}: Apache Spark, PySpark, Hadoop, Hive, Pig  
-\textbf{Cloud Services}: Pub/Sub, Datastream, Vertex AI, Google Kubernetes Engine (GKE), Snowpipe, AWS Batch, AWS Data Pipeline, EC2, Kinesis, Elasticache, SageMaker, Docker
+*   **Real-time Analytics Dashboard:** Developed a proof-of-concept dashboard using AWS Kinesis, Lambda, and QuickSight to visualize streaming sensor data.
+*   **Data Lake Implementation:** Contributed to building a data lake on AWS S3, establishing partitioning strategies and metadata management using AWS Glue Data Catalog.
 
 ## Keywords
 
-BigQuery, Apache, Business Intelligence, BI, ETL, Pipeline, Statistics, Clustering, Backend, Back End, DevOps, Information Security, API, Project Management, Performance Optimization, Problem Solving, Attention to Detail, Advanced Analytics, Data Architecture, Cloud Computing, Machine Learning, Predictive Analytics, Data Science, Campaign Optimization, AWS, Azure, Power BI, PowerBI, DynamoDB, Dynamo DB, Decision Making, Business Objectives
+*(This section will be auto-populated with unused keywords)*

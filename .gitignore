@@ -34,6 +34,8 @@ data/output/*
 .env
 client_secret.json
 token.pickle
+data/input/test_resume.pdf
+job_types/*/templates/malachi_dunn*.*
 
 # Ignore Python cache files
 __pycache__/
