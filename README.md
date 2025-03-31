@@ -48,14 +48,14 @@ chmod +x generate_resume.sh
 ```
 /
 ├── data/
-│   ├── input/                   # User uploads resumes here
+│   ├── input/                   # Input files for the generator
+│   │   └── keywords.csv         # Curated keywords (moved here)
 │   └── output/                  # Optimized resumes saved here
 │       ├── processed_keywords.csv # Analyzed keywords 
 │       ├── resume.md            # Generated resume (Markdown)
 │       └── resume.pdf           # Generated resume (PDF)
 ├── job_types/                   # Job type-specific resources
 │   └── data_engineer/           # Data Engineer job type
-│       ├── keywords.csv         # Curated keywords for Data Engineers
 │       └── templates/           # Templates for Data Engineers
 │           └── general.md       # Generic Data Engineer template
 ├── scripts/
@@ -114,11 +114,11 @@ The system is organized by job types (e.g., Data Engineer), each with:
 
 ### 2. Keyword Processing
 
-For each job type, the system analyzes its keyword file (e.g., `job_types/data_engineer/keywords.csv`) to identify:
+The system analyzes the keyword file (`data/input/keywords.csv`) to identify:
 - **High priority keywords**: Essential terms for the job
 - **Low priority keywords**: Secondary terms that add value
 
-Keywords are processed, counted by frequency, and organized for analysis.
+Keywords are processed, counted by frequency, and organized for analysis. The results are saved to `data/output/processed_keywords.csv`.
 
 ### 3. Template Application
 
@@ -128,7 +128,7 @@ Your resume information is formatted using a template specific to the selected j
 
 ### 4. Keyword Analysis & Integration
 
-The system identifies which keywords from the job descriptions are missing from your resume and adds them to a dedicated "Keywords" section, ensuring your resume contains all the relevant terms that ATS systems look for.
+The system identifies which keywords from the processed list (`data/output/processed_keywords.csv`) are missing from your resume template and adds them to a dedicated "Keywords" section, ensuring your resume contains relevant terms that ATS systems look for.
 
 ### 5. Output Generation
 
@@ -145,8 +145,7 @@ The final resume is generated in both Markdown and PDF formats, with proper form
 ### Adding New Job Types
 
 1. Create a new directory under `job_types/` for your job type (e.g., `data_scientist`)
-2. Add a `keywords.csv` file with high and low priority keywords for that job
-3. Create a `templates` directory with at least a `general.md` template
+2. Add relevant templates to a `templates` directory within the new job type folder (e.g., `job_types/data_scientist/templates/general.md`). Note: The `keywords.csv` file is now shared and located in `data/input/`. You may need to adjust its contents if adding job types with significantly different keyword requirements.
 
 ### Special Capitalization
 

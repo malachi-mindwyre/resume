@@ -361,7 +361,8 @@ def main():
     
     # Set paths based on job type and template
     job_type_dir = os.path.join('job_types', args.job_type)
-    keywords_file = os.path.join(job_type_dir, 'keywords.csv')
+    # keywords_file = os.path.join(job_type_dir, 'keywords.csv') # Original path
+    keywords_file = os.path.join('data', 'input', 'keywords.csv') # Updated path
     template_file = os.path.join(job_type_dir, 'templates', f"{args.template}.md")
     
     # Check if job type directory exists
@@ -386,7 +387,8 @@ def main():
     
     # Check if keywords file exists
     if not os.path.exists(keywords_file):
-        print(f"Error: Keywords file not found for job type '{args.job_type}'.")
+        # print(f"Error: Keywords file not found for job type '{args.job_type}'.") # Original message
+        print(f"Error: Keywords file not found at '{keywords_file}'.") # Updated message
         return
     
     # Create output directory if needed
