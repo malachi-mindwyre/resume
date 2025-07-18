@@ -19,7 +19,7 @@ header-includes:
 {\Large\textbf{Malachi Dunn}}\\[0em]
 {\large Data Engineer • Data Scientist}\\[0em]
 \href{mailto:malachi@mindwyre.org}{malachi@mindwyre.org} | (+1) 208-625-1747 | Oldtown, ID 83822 United States\\[0em]
-\href{https://linkedin.com/in/malachidunn}{linkedin.com/in/malachidunn} | \href{https://github.com/malachi-mindwyre}{github.com/malachi-mindwyre} | \href{https://mindwyre.org}{mindwyre.org}
+\href{https://linkedin.com/in/malachiomally}{linkedin.com/in/malachiomally} | \href{https://github.com/malachi-mindwyre}{github.com/malachi-mindwyre} | \href{https://mindwyre.org}{mindwyre.org}
 \end{center}
 
 
